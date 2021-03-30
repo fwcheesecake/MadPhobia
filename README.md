@@ -5,4 +5,4 @@ Primer Juego de SimpDevs
 - Fuego
 - Melee
 - Explosivo
-## Tipos de CACAS
+
