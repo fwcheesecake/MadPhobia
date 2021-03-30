@@ -1,6 +1,6 @@
 # MadPhobia
 Primer Juego de SimpDevs
-Existen 4 tipos de armas
+## Tipos de armas
 - Veneno
 - Fuego
 - Melee
