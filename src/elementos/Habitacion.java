@@ -23,6 +23,22 @@ public class Habitacion extends JPanel {
         }
     }
 
+    public Habitacion(int f, int c) {
+        setFilas(f);
+        setColumnas(c);
+        setCasillas(new Casilla[filas][columnas]);
+
+        setLayout(new GridLayout(filas, columnas));
+
+        for(int i = 0; i < filas; i++) {
+            for(int j = 0; j < columnas; j++) {
+                casillas[i][j] = new Casilla(i, j);
+                casillas[i][j].setBackground(new Color(0x181818));
+                add(casillas[i][j]);
+            }
+        }
+    }
+
     public int getFilas() {
         return filas;
     }

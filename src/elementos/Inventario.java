@@ -1,5 +1,6 @@
 package elementos;
 
+import entidades.Arma;
 import entidades.Objeto;
 
 public class Inventario {
@@ -26,11 +27,20 @@ public class Inventario {
     }
 
     public void tirar(int objeto) {
-
+        mochila[objeto] = null;
     }
 
     public void equipar(int objeto) {
-
+        Objeto objetoSeleccionado = mochila[objeto];
+        Objeto objetoACambiar;
+        if(mochila[objeto] instanceof Arma) {
+            objetoACambiar = equipados[0];
+            equipados[0] = objetoSeleccionado;
+        } else {
+            objetoACambiar = equipados[1];
+            equipados[1] = objetoSeleccionado;
+        }
+        mochila[objeto] = objetoACambiar;
     }
 
     public void desequipar(int objeto) {

@@ -11,8 +11,17 @@ public class Casilla extends JButton {
     private Entidad entidad;
 
     public Casilla() {
+        super();
         setPosX(-1);
         setPosY(-1);
+        setEstado((byte) -1);
+        setEntidad(new Entidad());
+    }
+
+    public Casilla(int x, int y) {
+        super();
+        setPosX(x);
+        setPosY(y);
         setEstado((byte) -1);
         setEntidad(new Entidad());
     }
