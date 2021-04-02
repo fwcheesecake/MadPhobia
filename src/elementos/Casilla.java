@@ -1,20 +1,21 @@
 package elementos;
 
 import entidades.Entidad;
+import enumerados.Estado;
 
 import javax.swing.*;
 
 public class Casilla extends JButton {
     private int posX;
     private int posY;
-    private byte estado;
+    private Estado estado;
     private Entidad entidad;
 
     public Casilla() {
         super();
         setPosX(-1);
         setPosY(-1);
-        setEstado((byte) -1);
+        setEstado(Estado.NORMAL);
         setEntidad(new Entidad());
     }
 
@@ -22,7 +23,7 @@ public class Casilla extends JButton {
         super();
         setPosX(x);
         setPosY(y);
-        setEstado((byte) -1);
+        setEstado(Estado.NORMAL);
         setEntidad(new Entidad());
     }
 
@@ -40,11 +41,26 @@ public class Casilla extends JButton {
         this.posY = posY;
     }
 
-    public byte getEstado() {
+    public Estado getEstado() {
         return estado;
     }
-    public void setEstado(byte estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+    public boolean esNormal() {
+        return getEstado() == Estado.NORMAL;
+    }
+    public boolean esPuerta() {
+        return getEstado() == Estado.PUERTA;
+    }
+    public boolean esEntrada() {
+        return getEstado() == Estado.ENTRADA;
+    }
+    public boolean esPared() {
+        return getEstado() == Estado.PARED;
+    }
+    public boolean estaOcupada() {
+        return getEstado() == Estado.OCUPADO;
     }
 
     public Entidad getEntidad() {
