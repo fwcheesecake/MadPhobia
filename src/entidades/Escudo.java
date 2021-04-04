@@ -1,7 +1,13 @@
 package entidades;
 
+import javax.swing.*;
+
 public class Escudo extends Objeto {
     private int escudo;
+
+    public static ImageIcon[] iconos = {
+            new ImageIcon(Consumible.class.getResource("/imagenes/objetos/consumibles/lata.png"))
+    };
 
     public Escudo() {
         super();

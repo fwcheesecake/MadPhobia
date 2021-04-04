@@ -167,10 +167,13 @@ public class Habitacion extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Casilla casillaSeleccionada = (Casilla) e.getSource();
-        if(casillaSeleccionada.getEstado() == Estado.PUERTA) {
+        if(casillaSeleccionada.esPuerta()) {
             crearNuevaHabitacion();
-        } else if(casillaSeleccionada.getEstado() == Estado.PARED) {
-            System.out.println("Es pared");
+        } else if(casillaSeleccionada.estaOcupada()) {
+            if(casillaSeleccionada.getEntidad() instanceof Consumible) {
+                int index = casillaSeleccionada.getEntidad().getImagen();
+                casillaSeleccionada.setIcon(Consumible.iconos[index]);
+            }
         }
     }
 
@@ -213,7 +216,10 @@ public class Habitacion extends JPanel implements ActionListener {
                 x = rand.nextInt(filas);
                 y = rand.nextInt(columnas);
             } while(casillas[x][y].esPared() || casillas[x][y].esEntrada() || casillas[x][y].esPuerta() || casillas[x][y].estaOcupada());
-            casillas[x][y].setIcon(Consumible.iconos[0]);
+            Consumible entidad = new Consumible();
+            entidad.setImagen(0);
+            casillas[x][y].setEntidad(entidad);
+            casillas[x][y].setBackground(new Color(0xEA501E));
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
