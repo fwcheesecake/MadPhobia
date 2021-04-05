@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class Juego extends JFrame {
     private JLayeredPane contentPane;
+    private final JPanel indicadorInventario;
 
     int width, height;
 
@@ -21,31 +22,37 @@ public class Juego extends JFrame {
         contentPane.setBounds(0, 0, width, height);
         add(contentPane);
 
-        Habitacion habitacion = new Habitacion(5, 7);
+        Habitacion habitacion = new Habitacion();
         habitacion.setBackground(new Color(0x2F2F2F));
-        habitacion.setBounds(10, 10, width - 20, height - 20);
+        habitacion.setBounds((width - height - 10) / 2, 10, height - 20, height - 20);
         contentPane.add(habitacion, Integer.valueOf(0));
 
         Indicador indicadorJugador1 = new Indicador();
-        int wIndicador1 = width / 8, hIndicador1 = height / 12;
+        int wIndicador = width / 8, hIndicador = height / 12;
         indicadorJugador1.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         indicadorJugador1.setOpaque(false);
-        indicadorJugador1.setBounds(0, 0, wIndicador1, hIndicador1);
+        indicadorJugador1.setBounds(0, 0, wIndicador, hIndicador);
         contentPane.add(indicadorJugador1, Integer.valueOf(1));
 
         Indicador indicadorJugador2 = new Indicador();
-        int xIndicador2 = width - wIndicador1;
+        int xIndicador2 = width - wIndicador;
         indicadorJugador2.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         indicadorJugador2.setOpaque(false);
-        indicadorJugador2.setBounds(xIndicador2, 0, wIndicador1, hIndicador1);
+        indicadorJugador2.setBounds(xIndicador2, 0, wIndicador, hIndicador);
         contentPane.add(indicadorJugador2, Integer.valueOf(1));
 
         Indicador indicadorJugador3 = new Indicador();
-        int yIndicador3 = height - hIndicador1;
+        int yIndicador3 = height - hIndicador;
         indicadorJugador3.setOpaque(false);
         indicadorJugador3.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
-        indicadorJugador3.setBounds(0, yIndicador3, wIndicador1, hIndicador1);
+        indicadorJugador3.setBounds(0, yIndicador3, wIndicador, hIndicador);
         contentPane.add(indicadorJugador3, Integer.valueOf(1));
+
+        indicadorInventario = new JPanel();
+        indicadorInventario.setOpaque(false);
+        indicadorInventario.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
+        indicadorInventario.setBounds(xIndicador2, yIndicador3, wIndicador, hIndicador);
+        contentPane.add(indicadorInventario, Integer.valueOf(1));
     }
 
     public static void main(String[] args) {

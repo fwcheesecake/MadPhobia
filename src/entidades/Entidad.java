@@ -1,7 +1,10 @@
 package entidades;
 
+import javax.swing.*;
+
 public class Entidad {
     protected String nombre;
+    protected int imagen;
 
     public String getNombre() {
         return nombre;
@@ -9,5 +12,13 @@ public class Entidad {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(int icono) {
+        this.imagen = icono;
     }
 }

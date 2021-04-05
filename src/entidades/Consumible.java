@@ -1,6 +1,11 @@
 package entidades;
 
+import javax.swing.*;
+
 public class Consumible extends Objeto {
+    public static ImageIcon[] iconos = {
+            new ImageIcon(Consumible.class.getResource("/imagenes/objetos/consumibles/lata.png"))
+    };
     private int regeneracion;
 
     public Consumible() {
