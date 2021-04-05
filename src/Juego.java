@@ -1,13 +1,16 @@
 import elementos.Habitacion;
 import elementos.Indicador;
+import elementos.Inventario;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Juego extends JFrame {
+public class Juego extends JFrame  {
     private JLayeredPane contentPane;
     private final JPanel indicadorInventario;
-
+    JButton inventariob;
     int width, height;
 
     Juego() {
@@ -52,12 +55,18 @@ public class Juego extends JFrame {
         indicadorInventario.setOpaque(false);
         indicadorInventario.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         indicadorInventario.setBounds(xIndicador2, yIndicador3, wIndicador, hIndicador);
+        inventariob = new JButton("Inventario");
+        inventariob.setBackground(new Color(0x2A2929));
+        inventariob.setBounds(450,200,50,100);
+        inventariob.setBorder(BorderFactory.createLineBorder(Color.black));
+        indicadorInventario.add(inventariob);
         contentPane.add(indicadorInventario, Integer.valueOf(1));
+
+
     }
 
     public static void main(String[] args) {
         Juego juego = new Juego();
-
         juego.setFullscreen();
         juego.setVisible(true);
         juego.setTitle("MadPhobia");

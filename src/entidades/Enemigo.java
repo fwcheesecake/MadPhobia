@@ -3,9 +3,16 @@ package entidades;
 
 import enumerados.Tipo;
 
+import javax.swing.*;
+
 public class Enemigo extends Ser {
     protected Tipo fortaleza;
     protected Tipo debilidad;
+
+    public static ImageIcon[] iconos = {
+            new ImageIcon(Enemigo.class.getResource("/imagenes/enemigos/arana.png"))
+    };
+
     public Enemigo() {
         super();
         setFortaleza(Tipo.MELEE);

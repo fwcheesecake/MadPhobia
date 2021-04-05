@@ -3,14 +3,56 @@ package elementos;
 import entidades.Arma;
 import entidades.Objeto;
 
-public class Inventario {
+import javax.swing.*;
+import java.awt.*;
+
+public class Inventario extends JPanel{
+
     private Objeto[] equipados;
     private Objeto[] mochila;
+    JPanel Inf;
+    Inventario inv = new Inventario();
+    Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+    JButton [][] BInventario;
+    JButton usar, tirar;
 
     public Inventario() {
         setEquipados(new Objeto[2]);
         setMochila(new Objeto[9]);
+
+        setBounds(0, 0 ,600,600);
+        setBackground(new Color(0x181818));
+        setLayout(new GridLayout(3, 3));
+
+        usar = new JButton("Usar/Equipar");
+        usar.setBackground(new Color(0x2A2929));
+        usar.setBounds(650,200,50,100);
+        usar.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        tirar = new JButton("Tirar");
+        tirar.setBackground(new Color(0x2A2929));
+        tirar.setBounds(650,260,50,100);
+        tirar.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        BInventario = new JButton[3][3];
+        for (int i=0;i<3;i++){
+            for(int j=0; j<3;j++){
+                BInventario[i][j]= new JButton();
+                BInventario[i][j].setBackground(new Color(0x181818));
+                BInventario[i][j].setBounds(20, 10,50,50);
+                add(BInventario[i][j]);
+                setVisible(true);
+            }
+        }
+
+
+        add(inv, Integer.valueOf(1));
+
+
+
     }
+
+
 
     public Objeto[] getEquipados() {
         return equipados;
@@ -46,4 +88,5 @@ public class Inventario {
     public void desequipar(int objeto) {
 
     }
+
 }
