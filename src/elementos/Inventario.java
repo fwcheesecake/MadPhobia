@@ -15,10 +15,16 @@ public class Inventario extends JPanel{
     Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
     JButton [][] BInventario;
     JButton usar, tirar;
-
+    JButton Princ1, Princ2;
     public Inventario() {
         setEquipados(new Objeto[2]);
         setMochila(new Objeto[9]);
+
+        Inf = new JPanel();
+        Inf.setBounds(0,0,600,800);
+        Inf.setLayout(null);
+        Inf.setBackground(new Color(0x3D3B3B));
+        Inf.setVisible(true);
 
         setBounds(0, 0 ,600,600);
         setBackground(new Color(0x181818));
@@ -26,13 +32,29 @@ public class Inventario extends JPanel{
 
         usar = new JButton("Usar/Equipar");
         usar.setBackground(new Color(0x2A2929));
-        usar.setBounds(650,200,50,100);
+        usar.setBounds(630,400,100,50);
+        usar.setForeground(Color.black);
         usar.setBorder(BorderFactory.createLineBorder(Color.black));
+        Inf.add(usar);
 
         tirar = new JButton("Tirar");
         tirar.setBackground(new Color(0x2A2929));
-        tirar.setBounds(650,260,50,100);
+        tirar.setBounds(745,400,100,50);
+        tirar.setForeground(Color.black);
         tirar.setBorder(BorderFactory.createLineBorder(Color.black));
+        Inf.add(tirar);
+
+        Princ1 = new JButton();
+        Princ1.setBackground(new Color(0x2A2929));
+        Princ1.setBounds(620,250,120,120);
+        Princ1.setBorder(BorderFactory.createLineBorder(Color.black));
+        Inf.add(Princ1);
+
+        Princ2 = new JButton();
+        Princ2.setBackground(new Color(0x2A2929));
+        Princ2.setBounds(745,250,120,120);
+        Princ2.setBorder(BorderFactory.createLineBorder(Color.black));
+        Inf.add(Princ2);
 
         BInventario = new JButton[3][3];
         for (int i=0;i<3;i++){
@@ -45,8 +67,8 @@ public class Inventario extends JPanel{
             }
         }
 
-
-        add(inv, Integer.valueOf(1));
+        Inf.add(inv);
+        add(Inf, Integer.valueOf(1));
 
 
 
