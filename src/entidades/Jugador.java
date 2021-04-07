@@ -6,10 +6,12 @@ import elementos.Inventario;
 
 public class Jugador {
     private Inventario inventario;
+
     public Jugador() {
         super();
-        setInventario(null);
+        setInventario(new Inventario());
     }
+
     public Inventario getInventario() { return inventario; }
     public void setInventario(Inventario inventario) {
         this.inventario = inventario;

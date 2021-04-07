@@ -4,7 +4,8 @@ import javax.swing.*;
 
 public class Consumible extends Objeto {
     public static ImageIcon[] iconos = {
-            new ImageIcon(Consumible.class.getResource("/imagenes/objetos/consumibles/lata.png"))
+            new ImageIcon(Consumible.class.getResource("/sprites/consumibles/salud/lata.png")),
+            new ImageIcon(Consumible.class.getResource("/sprites/consumibles/salud/lata2.png"))
     };
     private int regeneracion;
 

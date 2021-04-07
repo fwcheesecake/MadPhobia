@@ -1,6 +1,6 @@
 import elementos.Habitacion;
 import elementos.Indicador;
-import elementos.Inventario;
+import entidades.Jugador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +12,13 @@ public class Juego extends JFrame  {
     private final JPanel indicadorInventario;
     JButton inventariob;
     int width, height;
+
+    public static Jugador
+            jugador1 = new Jugador(),
+            jugador2 = new Jugador(),
+            jugador3 = new Jugador();
+
+    public Jugador jugadorActual = jugador1;
 
     Juego() {
         setBackground(new Color(0x2F2F2F));
@@ -55,14 +62,30 @@ public class Juego extends JFrame  {
         indicadorInventario.setOpaque(false);
         indicadorInventario.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         indicadorInventario.setBounds(xIndicador2, yIndicador3, wIndicador, hIndicador);
+
         inventariob = new JButton("Inventario");
         inventariob.setBackground(new Color(0x2A2929));
         inventariob.setBounds(450,200,50,100);
         inventariob.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        inventariob.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jugadorActual.getInventario().setVisible(true);
+            }
+        });
+
         indicadorInventario.add(inventariob);
         contentPane.add(indicadorInventario, Integer.valueOf(1));
 
+        contentPane.add(jugador1.getInventario(), Integer.valueOf(2));
+        jugador1.getInventario().crearInventarioGlobal();
 
+        contentPane.add(jugador2.getInventario(), Integer.valueOf(2));
+        jugador2.getInventario().crearInventarioGlobal();
+
+        contentPane.add(jugador3.getInventario(), Integer.valueOf(2));
+        jugador3.getInventario().crearInventarioGlobal();
     }
 
     public static void main(String[] args) {
