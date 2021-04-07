@@ -54,7 +54,21 @@ public class Inventario extends JPanel {
     }
 
     public void desequipar(int objeto) {
-
+        if(objeto == 0) {
+            for(int i = 0; i < 9; i++) {
+                if(getMochila()[i] == null) {
+                    getMochila()[i] = armaEquipada;
+                    armaEquipada = null;
+                }
+            }
+        } else {
+            for(int i = 0; i < 9; i++) {
+                if(getMochila()[i] == null) {
+                    getMochila()[i] = escudoEquipado;
+                    escudoEquipado = null;
+                }
+            }
+        }
     }
 
     public Arma getArmaEquipada() {
