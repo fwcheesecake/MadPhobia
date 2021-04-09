@@ -3,6 +3,7 @@ package entidades;
 import javax.swing.*;
 
 public class Consumible extends Objeto {
+    private int regeneracion;
     public static ImageIcon[] iconos = {
             new ImageIcon(Consumible.class.getResource("/sprites/consumibles/salud/lata.png")),
             new ImageIcon(Consumible.class.getResource("/sprites/consumibles/salud/lata2.png"))
@@ -12,7 +13,11 @@ public class Consumible extends Objeto {
             "Atun tu*y para gran deleite"
     };
 
-    private int regeneracion;
+
+    public static void inicializarIconos() {
+        iconos[0].setDescription("Lanta");
+        iconos[1].setDescription("Lata2");
+    }
 
     public Consumible() {
         super();

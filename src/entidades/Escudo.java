@@ -11,6 +11,13 @@ public class Escudo extends Objeto {
             new ImageIcon(Escudo.class.getResource("/sprites/consumibles/escudos/mascara.png"))
     };
 
+    public static void inicializarIconos() {
+        iconos[0].setDescription("Chaleco");
+        iconos[1].setDescription("ChalecoPesado");
+        iconos[2].setDescription("Mascara");
+
+    }
+
     public Escudo() {
         super();
         setEscudo(0);
