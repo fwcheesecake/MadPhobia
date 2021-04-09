@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class Habitacion extends JPanel implements ActionListener {
+    public static int nivel = 0;
+    public static int turno = 0;
+
     private int filas;
     private int columnas;
     private Casilla[][] casillas;
@@ -131,7 +134,7 @@ public class Habitacion extends JPanel implements ActionListener {
 
     public Habitacion() {
         rand = new Random(System.currentTimeMillis());
-        int fc = 2 + rand.nextInt(2);
+        int fc = 3; //+ rand.nextInt(2);
 
         setFilas(fc * 3);
         setColumnas(fc * 3);
@@ -179,14 +182,25 @@ public class Habitacion extends JPanel implements ActionListener {
                 scaleImage(Consumible.iconos[index], casillaSeleccionada.getSize());
                 casillaSeleccionada.setIcon(Consumible.iconos[index]);
             } else if(casillaSeleccionada.getEntidad() instanceof Escudo) {
-
+                int index = casillaSeleccionada.getEntidad().getImagen();
+                scaleImage(Escudo.iconos[index], casillaSeleccionada.getSize());
+                casillaSeleccionada.setIcon(Escudo.iconos[index]);
             } else if(casillaSeleccionada.getEntidad() instanceof Arma) {
-
+                int index = casillaSeleccionada.getEntidad().getImagen();
+                scaleImage(Arma.iconos[index], casillaSeleccionada.getSize());
+                casillaSeleccionada.setIcon(Arma.iconos[index]);
             } else {
                 int index = casillaSeleccionada.getEntidad().getImagen();
                 scaleImage(Enemigo.iconos[index], casillaSeleccionada.getSize());
                 casillaSeleccionada.setIcon(Enemigo.iconos[index]);
             }
+        }
+        Juego.jugadorActual.setCasilla(new Point(casillaSeleccionada.getPosX(), casillaSeleccionada.getPosY()));
+        turno = (turno + 1) % 3;
+        switch(turno) {
+            case 0 -> Juego.jugadorActual = Juego.jugador1;
+            case 1 -> Juego.jugadorActual = Juego.jugador2;
+            case 2 -> Juego.jugadorActual = Juego.jugador3;
         }
     }
 
@@ -206,7 +220,6 @@ public class Habitacion extends JPanel implements ActionListener {
             }
         }
     }
-
     private void agregarPuerta() {
         do {
             x = rand.nextInt(filas);
@@ -242,7 +255,6 @@ public class Habitacion extends JPanel implements ActionListener {
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
-
     private void agregarEnemigos() {
         Random rand = new Random(System.currentTimeMillis());
         int cota = Enemigo.iconos.length;
@@ -262,7 +274,6 @@ public class Habitacion extends JPanel implements ActionListener {
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
-
     private void agregarArmas() {
         Random rand = new Random(System.currentTimeMillis());
         int cota = Arma.iconos.length;
@@ -283,7 +294,6 @@ public class Habitacion extends JPanel implements ActionListener {
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
-
     private void agregarEscudos() {
         Random rand = new Random(System.currentTimeMillis());
         int cota = Escudo.iconos.length;
@@ -304,7 +314,6 @@ public class Habitacion extends JPanel implements ActionListener {
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
-
     private void rellenarBloque(int i, int j, int k, int e) {
         if(dungeons[i][j][k] == 0) {
             for(int l = j * e; l < j * e + e; l++) {
@@ -327,14 +336,14 @@ public class Habitacion extends JPanel implements ActionListener {
             }
         }
     }
-
     private void crearNuevaHabitacion() {
+        nivel++;
         removeAll();
         repaint();
         revalidate();
 
         Random rand = new Random(System.currentTimeMillis());
-        int fc = 2 + rand.nextInt(2);
+        int fc = 3; //+ rand.nextInt(2);
         setFilas(fc * 3);
         setColumnas(fc * 3);
         setCasillas(new Casilla[filas][columnas]);
@@ -343,8 +352,10 @@ public class Habitacion extends JPanel implements ActionListener {
 
         agregarCasillas();
         agregarPuerta();
-        agregarConsumibles();
         agregarEnemigos();
+        agregarConsumibles();
+        agregarArmas();
+        agregarEscudos();
     }
 
     private void scaleImage(ImageIcon icon, Dimension d) {

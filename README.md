@@ -1,5 +1,5 @@
 # MadPhobia
-Primer Juego de SimpDevs
+Primer elementos.Juego de SimpDevs
 ## Tipos de armas
 - Veneno
 - Fuego

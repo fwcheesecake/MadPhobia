@@ -17,6 +17,7 @@ public class Casilla extends JButton {
         setPosY(-1);
         setEstado(Estado.NORMAL);
         setEntidad(new Entidad());
+        setCursor(Cursores.POR_ENCIMA);
     }
 
     public Casilla(int x, int y) {
@@ -25,6 +26,7 @@ public class Casilla extends JButton {
         setPosY(y);
         setEstado(Estado.NORMAL);
         setEntidad(new Entidad());
+        setCursor(Cursores.POR_ENCIMA);
     }
 
     public int getPosX() {
@@ -61,6 +63,9 @@ public class Casilla extends JButton {
     }
     public boolean estaOcupada() {
         return getEstado() == Estado.OCUPADO;
+    }
+    public boolean hayJugador() {
+        return getEstado() == Estado.JUGADOR;
     }
 
     public Entidad getEntidad() {

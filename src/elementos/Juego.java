@@ -1,26 +1,24 @@
-import elementos.Habitacion;
-import elementos.Indicador;
+package elementos;
+
+import entidades.Enemigo;
 import entidades.Jugador;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Juego extends JFrame  {
     private JLayeredPane contentPane;
-    private final JPanel indicadorInventario;
-    JButton inventariob;
+    private JPanel indicadorInventario;
+    private JPanel indicadorCasilla;
     int width, height;
 
-    public static Jugador
-            jugador1 = new Jugador(),
-            jugador2 = new Jugador(),
-            jugador3 = new Jugador();
+    public static Jugador jugador1 = new Jugador(), jugador2 = new Jugador(), jugador3 = new Jugador();
 
-    public Jugador jugadorActual = jugador1;
+    public static Jugador jugadorActual = jugador1;
 
     Juego() {
+        setCursor(Cursores.POR_DEFECTO);
+
         setBackground(new Color(0x2F2F2F));
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         width = (int) screen.getWidth();
@@ -37,46 +35,37 @@ public class Juego extends JFrame  {
         habitacion.setBounds((width - height - 10) / 2, 10, height - 20, height - 20);
         contentPane.add(habitacion, Integer.valueOf(0));
 
-        Indicador indicadorJugador1 = new Indicador();
         int wIndicador = width / 8, hIndicador = height / 12;
-        indicadorJugador1.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
-        indicadorJugador1.setOpaque(false);
-        indicadorJugador1.setBounds(0, 0, wIndicador, hIndicador);
-        contentPane.add(indicadorJugador1, Integer.valueOf(1));
+        jugador1.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
+        jugador1.getIndicador().setOpaque(false);
+        jugador1.getIndicador().setBounds(0, 0, wIndicador, hIndicador);
+        contentPane.add(jugador1.getIndicador(), Integer.valueOf(1));
 
-        Indicador indicadorJugador2 = new Indicador();
         int xIndicador2 = width - wIndicador;
-        indicadorJugador2.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
-        indicadorJugador2.setOpaque(false);
-        indicadorJugador2.setBounds(xIndicador2, 0, wIndicador, hIndicador);
-        contentPane.add(indicadorJugador2, Integer.valueOf(1));
+        jugador2.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
+        jugador2.getIndicador().setOpaque(false);
+        jugador2.getIndicador().setBounds(xIndicador2, 0, wIndicador, hIndicador);
+        contentPane.add(jugador2.getIndicador(), Integer.valueOf(1));
 
-        Indicador indicadorJugador3 = new Indicador();
         int yIndicador3 = height - hIndicador;
-        indicadorJugador3.setOpaque(false);
-        indicadorJugador3.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
-        indicadorJugador3.setBounds(0, yIndicador3, wIndicador, hIndicador);
-        contentPane.add(indicadorJugador3, Integer.valueOf(1));
+        jugador3.getIndicador().setOpaque(false);
+        jugador3.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
+        jugador3.getIndicador().setBounds(0, yIndicador3, wIndicador, hIndicador);
+        contentPane.add(jugador3.getIndicador(), Integer.valueOf(1));
 
         indicadorInventario = new JPanel();
         indicadorInventario.setOpaque(false);
         indicadorInventario.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         indicadorInventario.setBounds(xIndicador2, yIndicador3, wIndicador, hIndicador);
 
-        inventariob = new JButton("Inventario");
-        inventariob.setBackground(new Color(0x2A2929));
-        inventariob.setBounds(450,200,50,100);
-        inventariob.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        inventariob.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jugadorActual.getInventario().setVisible(true);
-            }
-        });
-
-        indicadorInventario.add(inventariob);
         contentPane.add(indicadorInventario, Integer.valueOf(1));
+
+        indicadorCasilla = new JPanel();
+        indicadorCasilla.setOpaque(false);
+        indicadorCasilla.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
+        int gap = height - hIndicador * 2;
+        indicadorCasilla.setBounds(xIndicador2, hIndicador + gap / 10, wIndicador, gap - (gap / 10) * 2);
+        contentPane.add(indicadorCasilla, Integer.valueOf(1));
 
         contentPane.add(jugador1.getInventario(), Integer.valueOf(2));
         jugador1.getInventario().crearInventarioGlobal();
@@ -90,6 +79,9 @@ public class Juego extends JFrame  {
 
     public static void main(String[] args) {
         Juego juego = new Juego();
+
+        Enemigo.inicializarIconos();
+
         juego.setFullscreen();
         juego.setVisible(true);
         juego.setTitle("MadPhobia");
