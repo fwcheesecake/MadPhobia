@@ -12,7 +12,9 @@ public class Juego extends JFrame  {
     private JPanel indicadorCasilla;
     int width, height;
 
-    public static Jugador jugador1 = new Jugador(), jugador2 = new Jugador(), jugador3 = new Jugador();
+    public static Jugador jugador1 = new Jugador("Jonathan", 0, 100, 0, 15, new Point(0, 0)),
+            jugador2 = new Jugador("Antonio", 1, 100, 0, 15, new Point(0, 0)),
+            jugador3 = new Jugador("Daneial", 2, 100, 0, 15, new Point(0, 0));
 
     public static Jugador jugadorActual = jugador1;
 

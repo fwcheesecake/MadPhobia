@@ -11,6 +11,11 @@ public class Entidad {
         setImagen(0);
     }
 
+    public Entidad(String nombre, int imagen) {
+        setNombre(nombre);
+        setImagen(imagen);
+    }
+
     public String getNombre() {
         return nombre;
     }

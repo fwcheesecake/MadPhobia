@@ -5,6 +5,7 @@ import entidades.Consumible;
 import entidades.Enemigo;
 import entidades.Escudo;
 import enumerados.Estado;
+import enumerados.Tipo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -246,9 +247,10 @@ public class Habitacion extends JPanel implements ActionListener {
                 y = rand.nextInt(columnas);
             } while(casillas[x][y].esPared() || casillas[x][y].esEntrada() || casillas[x][y].esPuerta() || casillas[x][y].estaOcupada());
 
-            Consumible entidad = new Consumible();
+            int index = rand.nextInt(cota);
+            String nombre = Enemigo.iconos[index].getDescription();
 
-            entidad.setImagen(rand.nextInt(cota));
+            Consumible entidad = new Consumible(nombre, index, Consumible.descripcion[index], 15);
 
             casillas[x][y].setEntidad(entidad);
             casillas[x][y].setBackground(new Color(0x6EFD47));
@@ -265,9 +267,12 @@ public class Habitacion extends JPanel implements ActionListener {
                 y = rand.nextInt(columnas);
             } while(casillas[x][y].esPared() || casillas[x][y].esEntrada() || casillas[x][y].esPuerta() || casillas[x][y].estaOcupada());
 
-            Enemigo entidad = new Enemigo();
+            int index = rand.nextInt(cota);
+            String nombre = Enemigo.iconos[index].getDescription();
+            Tipo fortaleza = fortalezaEnemigo(nombre);
+            Tipo debilidad = debilidadEnemigo(nombre);
 
-            entidad.setImagen(rand.nextInt(cota));
+            Enemigo entidad = new Enemigo(nombre, index, 100, 0, 15, fortaleza, debilidad);
 
             casillas[x][y].setEntidad(entidad);
             casillas[x][y].setBackground(new Color(0xEA1E1E));
@@ -341,7 +346,6 @@ public class Habitacion extends JPanel implements ActionListener {
         removeAll();
         repaint();
         revalidate();
-
         Random rand = new Random(System.currentTimeMillis());
         int fc = 3; //+ rand.nextInt(2);
         setFilas(fc * 3);
@@ -356,6 +360,51 @@ public class Habitacion extends JPanel implements ActionListener {
         agregarConsumibles();
         agregarArmas();
         agregarEscudos();
+    }
+
+    public Tipo tipoRandom(int x) {
+        int y = x % 4;
+        switch (y) {
+            case 0 -> {
+                return Tipo.MELEE;
+            }
+            case 1 -> {
+                return Tipo.EXPLOSIVO;
+            }
+            case 2 -> {
+                return Tipo.FUEGO;
+            }
+            case 3 -> {
+                return Tipo.RADIACTIVO;
+            }
+        }
+        return Tipo.MELEE;
+    }
+
+    public Tipo debilidadEnemigo(String name) {
+        switch (name) {
+            case "Saqueador" -> {
+                return Tipo.FUEGO;
+            } case "Soldado" -> {
+                return Tipo.RADIACTIVO;
+            } case "Cosa", "Dos Cabezas", "Guts" -> {
+                return Tipo.EXPLOSIVO;
+            }
+        }
+        return Tipo.MELEE;
+    }
+
+    public Tipo fortalezaEnemigo(String name) {
+        switch (name) {
+            case "Saqueador" -> {
+                return Tipo.MELEE;
+            } case "Soldado" -> {
+                return Tipo.FUEGO;
+            } case "Cosa", "Dos Cabezas", "Guts" -> {
+                return Tipo.RADIACTIVO;
+            }
+        }
+        return Tipo.MELEE;
     }
 
     private void scaleImage(ImageIcon icon, Dimension d) {

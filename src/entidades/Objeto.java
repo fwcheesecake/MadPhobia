@@ -10,6 +10,11 @@ public class Objeto extends Entidad {
         setDescripcion("");
     }
 
+    public Objeto(String nombre, int imagen, String descripcion) {
+        super(nombre, imagen);
+        setDescripcion(descripcion);
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

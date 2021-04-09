@@ -26,6 +26,12 @@ public class Arma extends Objeto {
         setTipo(Tipo.MELEE);
     }
 
+    public Arma(String nombre, int imagen, String descripcion, int dano, Tipo tipo) {
+        super(nombre, imagen, descripcion);
+        setDano(dano);
+        setTipo(tipo);
+    }
+
     public int getDano() {
         return dano;
     }

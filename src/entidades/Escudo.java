@@ -16,6 +16,11 @@ public class Escudo extends Objeto {
         setEscudo(0);
     }
 
+    public Escudo(String nombre, int imagen, String descripcion, int escudo) {
+        super(nombre, imagen, descripcion);
+        setEscudo(escudo);
+    }
+
     public int getEscudo() {
         return escudo;
     }

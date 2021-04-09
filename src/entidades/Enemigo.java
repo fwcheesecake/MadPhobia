@@ -42,6 +42,13 @@ public class Enemigo extends Ser {
         setFortaleza(Tipo.MELEE);
         setDebilidad(Tipo.MELEE);
     }
+
+    public Enemigo(String nombre, int imagen, int vida, int escudo, int fuerza, Tipo fortaleza, Tipo debilidad) {
+        super(nombre, imagen, vida, escudo, fuerza);
+        setFortaleza(fortaleza);
+        setDebilidad(debilidad);
+    }
+
     public Tipo getFortaleza() {
         return fortaleza;
     }

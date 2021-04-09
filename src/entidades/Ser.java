@@ -12,6 +12,13 @@ public class Ser extends Entidad{
         setFuerza(15);
     }
 
+    public Ser(String nombre, int imagen, int vida, int escudo, int fuerza) {
+        super(nombre, imagen);
+        setVida(vida);
+        setEscudo(escudo);
+        setFuerza(fuerza);
+    }
+
     public int getVida() {
         return vida;
     }
