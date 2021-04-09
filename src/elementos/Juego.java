@@ -14,7 +14,7 @@ public class Juego extends JFrame  {
 
     public static Jugador jugador1 = new Jugador("Jonathan", 0, 100, 0, 15, new Point(0, 0)),
             jugador2 = new Jugador("Antonio", 1, 100, 0, 15, new Point(0, 0)),
-            jugador3 = new Jugador("Daneial", 2, 100, 0, 15, new Point(0, 0));
+            jugador3 = new Jugador("Daniela", 2, 100, 0, 15, new Point(0, 0));
 
     public static Jugador jugadorActual = jugador1;
 
