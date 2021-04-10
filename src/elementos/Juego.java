@@ -1,5 +1,6 @@
 package elementos;
 
+import entidades.Consumible;
 import entidades.Enemigo;
 import entidades.Jugador;
 
@@ -43,10 +44,16 @@ public class Juego extends JFrame {
         contentPane.add(habitacion, Integer.valueOf(0));
 
         indicadorInventario = new JPanel();
+        JButton Mochila=new JButton("");
+        JLabel Arma1=new JLabel("");
+        JLabel Arma2=new JLabel("");
+        indicadorInventario.add(Arma2);
+        indicadorInventario.add(Arma1);
+        indicadorInventario.add(Mochila);
         indicadorInventario.setOpaque(false);
         indicadorInventario.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         indicadorInventario.setBounds(xIndicador2, yIndicador3, wIndicador, hIndicador);
-
+        indicadorInventario.setLayout(new GridLayout(1,3));
         contentPane.add(indicadorInventario, Integer.valueOf(1));
 
         addIndicadoresDeJugador();
