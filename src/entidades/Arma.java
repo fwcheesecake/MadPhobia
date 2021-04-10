@@ -5,9 +5,6 @@ import enumerados.Tipo;
 import javax.swing.*;
 
 public class Arma extends Objeto {
-    int dano;
-    Tipo tipo;
-
     public static ImageIcon[] iconos = {
             new ImageIcon(Arma.class.getResource("/sprites/armas/explosivo/granada.png")),
             new ImageIcon(Arma.class.getResource("/sprites/armas/explosivo/molotov.png")),
@@ -19,6 +16,20 @@ public class Arma extends Objeto {
 
             new ImageIcon(Arma.class.getResource("/sprites/armas/meele/bottle.png"))
     };
+
+    public static String[] descripcion = {
+            "Gran explosion",
+            "Poder de fuego",
+            "Velocidad y poder por igual",
+            "Un arma poderosa",
+            "Le desinstala MadPhobia al enemigo",
+            "UziXD",
+            "Que dijistes del america"
+    };
+
+    int dano;
+    Tipo tipo;
+
 
     public Arma() {
         super();
