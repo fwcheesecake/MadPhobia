@@ -1,9 +1,6 @@
 package elementos;
 
-import entidades.Arma;
-import entidades.Consumible;
-import entidades.Enemigo;
-import entidades.Escudo;
+import entidades.*;
 import enumerados.Estado;
 import enumerados.Tipo;
 
@@ -175,34 +172,76 @@ public class Habitacion extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Casilla casillaSeleccionada = (Casilla) e.getSource();
+
+        Point p = Juego.jugadorActual.getCasilla();
+        casillas[(int) p.getX()][(int) p.getY()].setIcon(null);
+
+        scaleImage(Juego.jugadorActual.getIcono(), casillaSeleccionada.getSize());
+        casillaSeleccionada.setIcon(Juego.jugadorActual.getIcono());
+
         if(casillaSeleccionada.esPuerta()) {
             crearNuevaHabitacion();
         } else if(casillaSeleccionada.estaOcupada()) {
             if(casillaSeleccionada.getEntidad() instanceof Consumible) {
-                int index = casillaSeleccionada.getEntidad().getImagen();
-                scaleImage(Consumible.iconos[index], casillaSeleccionada.getSize());
-                casillaSeleccionada.setIcon(Consumible.iconos[index]);
+
             } else if(casillaSeleccionada.getEntidad() instanceof Escudo) {
-                int index = casillaSeleccionada.getEntidad().getImagen();
-                scaleImage(Escudo.iconos[index], casillaSeleccionada.getSize());
-                casillaSeleccionada.setIcon(Escudo.iconos[index]);
+
             } else if(casillaSeleccionada.getEntidad() instanceof Arma) {
-                int index = casillaSeleccionada.getEntidad().getImagen();
-                scaleImage(Arma.iconos[index], casillaSeleccionada.getSize());
-                casillaSeleccionada.setIcon(Arma.iconos[index]);
+
             } else {
-                int index = casillaSeleccionada.getEntidad().getImagen();
-                scaleImage(Enemigo.iconos[index], casillaSeleccionada.getSize());
-                casillaSeleccionada.setIcon(Enemigo.iconos[index]);
+                Enemigo enemigo = (Enemigo) casillaSeleccionada.getEntidad();
+                int danoRecebido = enemigo.getFuerza();
+                int danoRealizado = Juego.jugadorActual.getFuerza();
+
+                int escudoJugador = Juego.jugadorActual.getEscudo();
+                int vidaJugador = Juego.jugadorActual.getVida();
+
+                escudoJugador -= danoRecebido;
+                if(escudoJugador < 0) {
+                    danoRecebido = Math.abs(escudoJugador);
+                    escudoJugador = 0;
+                } else {
+                    danoRecebido = 0;
+                }
+                vidaJugador -= danoRecebido;
+                if(vidaJugador < 0)
+                    vidaJugador = 0;
+
+                int vidaEnemigo = enemigo.getVida() - danoRealizado;
+                if(vidaEnemigo < 0)
+                    vidaEnemigo = 0;
+
+                Juego.jugadorActual.setEscudo(escudoJugador);
+                Juego.jugadorActual.setVida(vidaJugador);
+
+                enemigo.setVida(vidaEnemigo);
+
+                System.out.println("Nombre: " + Juego.jugadorActual.getNombre());
+                System.out.println("Vida: " + Juego.jugadorActual.getVida());
+                System.out.println("Escudo: " + Juego.jugadorActual.getEscudo());
+
+                System.out.println("Nombre: " + enemigo.getNombre());
+                System.out.println("Vida: " + enemigo.getVida());
+
+                if(enemigo.estaMuerto()) {
+                    casillaSeleccionada.setEstado(Estado.NORMAL);
+                    casillaSeleccionada.setEntidad(null);
+                }
             }
         }
-        Juego.jugadorActual.setCasilla(new Point(casillaSeleccionada.getPosX(), casillaSeleccionada.getPosY()));
-        turno = (turno + 1) % 3;
-        switch(turno) {
-            case 0 -> Juego.jugadorActual = Juego.jugador1;
-            case 1 -> Juego.jugadorActual = Juego.jugador2;
-            case 2 -> Juego.jugadorActual = Juego.jugador3;
+
+        if(Juego.gameOver()) {
+            System.exit(0);
         }
+        do {
+            Juego.jugadorActual.setCasilla(new Point(casillaSeleccionada.getPosX(), casillaSeleccionada.getPosY()));
+            turno = (turno + 1) % 3;
+            switch (turno) {
+                case 0 -> Juego.jugadorActual = Juego.jugador1;
+                case 1 -> Juego.jugadorActual = Juego.jugador2;
+                case 2 -> Juego.jugadorActual = Juego.jugador3;
+            }
+        } while(Juego.jugadorActual.estaMuerto());
     }
 
     private void agregarCasillas() {
@@ -232,9 +271,19 @@ public class Habitacion extends JPanel implements ActionListener {
         do {
             x = rand.nextInt(filas);
             y = rand.nextInt(columnas);
-        } while(casillas[x][y].esPuerta() || casillas[x][y].esPared());
+        } while (casillas[x][y].esPuerta() || casillas[x][y].esPared());
+
         casillas[x][y].setEstado(Estado.ENTRADA);
         casillas[x][y].setBackground(new Color(0xFFFFFF));
+
+        Juego.jugador1.setCasilla(new Point(x, y));
+        Juego.jugador2.setCasilla(new Point(x, y));
+        Juego.jugador3.setCasilla(new Point(x, y));
+        scaleImage(Jugador.iconos[0], new Dimension(90, 90));
+        scaleImage(Jugador.iconos[1], new Dimension(90, 90));
+        scaleImage(Jugador.iconos[2], new Dimension(90, 90));
+
+        casillas[x][y].setIcon(Jugador.iconos[0]);
     }
 
     private void agregarConsumibles() {
@@ -290,9 +339,10 @@ public class Habitacion extends JPanel implements ActionListener {
                 y = rand.nextInt(columnas);
             } while(casillas[x][y].esPared() || casillas[x][y].esEntrada() || casillas[x][y].esPuerta() || casillas[x][y].estaOcupada());
 
-            Arma entidad = new Arma();
+            int index = rand.nextInt(cota);
+            String nombre = Enemigo.iconos[index].getDescription();
 
-            entidad.setImagen(rand.nextInt(cota));
+            Arma entidad = new Arma(nombre, index, Arma.descripcion[index], 15, tipoRandom(rand.nextInt()));
 
             casillas[x][y].setEntidad(entidad);
             casillas[x][y].setBackground(new Color(0xE9572D));
@@ -310,9 +360,10 @@ public class Habitacion extends JPanel implements ActionListener {
                 y = rand.nextInt(columnas);
             } while(casillas[x][y].esPared() || casillas[x][y].esEntrada() || casillas[x][y].esPuerta() || casillas[x][y].estaOcupada());
 
-            Escudo entidad = new Escudo();
+            int index = rand.nextInt(cota);
+            String nombre = Enemigo.iconos[index].getDescription();
 
-            entidad.setImagen(rand.nextInt(cota));
+            Escudo entidad = new Escudo(nombre, index, Arma.descripcion[index], 15);
 
             casillas[x][y].setEntidad(entidad);
             casillas[x][y].setBackground(new Color(0x2A81CD));
@@ -346,7 +397,7 @@ public class Habitacion extends JPanel implements ActionListener {
         removeAll();
         repaint();
         revalidate();
-        Random rand = new Random(System.currentTimeMillis());
+        //Random rand = new Random(System.currentTimeMillis());
         int fc = 3; //+ rand.nextInt(2);
         setFilas(fc * 3);
         setColumnas(fc * 3);

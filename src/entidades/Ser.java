@@ -42,4 +42,8 @@ public class Ser extends Entidad{
     public void setFuerza(int fuerza) {
         this.fuerza = fuerza;
     }
+
+    public boolean estaMuerto() {
+        return vida == 0;
+    }
 }
