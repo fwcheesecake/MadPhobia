@@ -42,28 +42,32 @@ public class Juego extends JFrame  {
         jugador1.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador1.getIndicador().setOpaque(false);
         jugador1.getIndicador().setBounds(0, 0, wIndicador, hIndicador);
-        jugador1.getIndicador(). pic.setIcon(Jugador.iconos[0]);
         contentPane.add(jugador1.getIndicador(), Integer.valueOf(1));
 
         int xIndicador2 = width - wIndicador;
         jugador2.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador2.getIndicador().setOpaque(false);
         jugador2.getIndicador().setBounds(xIndicador2, 0, wIndicador, hIndicador);
-        jugador2.getIndicador(). pic.setIcon(Jugador.iconos[2]);
         contentPane.add(jugador2.getIndicador(), Integer.valueOf(1));
 
         int yIndicador3 = height - hIndicador;
         jugador3.getIndicador().setOpaque(false);
         jugador3.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador3.getIndicador().setBounds(0, yIndicador3, wIndicador, hIndicador);
-        jugador3.getIndicador(). pic.setIcon(Jugador.iconos[3]);
         contentPane.add(jugador3.getIndicador(), Integer.valueOf(1));
 
+
         indicadorInventario = new JPanel();
+        JButton Mochila=new JButton("");
+        JLabel Arma1=new JLabel("");
+        JLabel Arma2=new JLabel("");
+        indicadorInventario.add(Arma2);
+        indicadorInventario.add(Arma1);
+        indicadorInventario.add(Mochila);
         indicadorInventario.setOpaque(false);
         indicadorInventario.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         indicadorInventario.setBounds(xIndicador2, yIndicador3, wIndicador, hIndicador);
-
+        indicadorInventario.setLayout(new GridLayout(1,3));
         contentPane.add(indicadorInventario, Integer.valueOf(1));
 
         indicadorCasilla = new JPanel();
