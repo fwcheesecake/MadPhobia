@@ -32,7 +32,7 @@ public class Indicador extends JPanel {
 
         pic.setPreferredSize(new Dimension(66, 66));
 
-        pic.setIcon(Consumible.iconos[0]);
+        pic.setIcon(Jugador.iconos[0]);
 
         pic.setHorizontalAlignment(JLabel.CENTER);
         pic.setVerticalAlignment(JLabel.CENTER);

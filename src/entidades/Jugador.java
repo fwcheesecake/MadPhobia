@@ -9,9 +9,9 @@ import java.awt.*;
 
 public class Jugador extends Ser {
     public static ImageIcon[] iconos = {
-            new ImageIcon(Escudo.class.getResource("/sprites/pjs/protagonistas/jonathan.gif")),
-            new ImageIcon(Escudo.class.getResource("/sprites/pjs/protagonistas/antonio.gif")),
-            new ImageIcon(Escudo.class.getResource("/sprites/pjs/protagonistas/daniela.gif"))
+            new ImageIcon(Jugador.class.getResource("/sprites/pjs/protagonistas/jonathan.gif")),
+            new ImageIcon(Jugador.class.getResource("/sprites/pjs/protagonistas/antonio.gif")),
+            new ImageIcon(Jugador.class.getResource("/sprites/pjs/protagonistas/daniela.gif"))
     };
 
     private Inventario inventario;
