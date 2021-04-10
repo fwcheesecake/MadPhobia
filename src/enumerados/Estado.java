@@ -5,5 +5,6 @@ public enum Estado {
     PARED,
     PUERTA,
     OCUPADO,
-    ENTRADA
+    ENTRADA,
+    JUGADOR
 }

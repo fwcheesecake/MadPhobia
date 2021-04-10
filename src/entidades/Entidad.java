@@ -6,6 +6,16 @@ public class Entidad {
     protected String nombre;
     protected int imagen;
 
+    public Entidad() {
+        setNombre("");
+        setImagen(0);
+    }
+
+    public Entidad(String nombre, int imagen) {
+        setNombre(nombre);
+        setImagen(imagen);
+    }
+
     public String getNombre() {
         return nombre;
     }

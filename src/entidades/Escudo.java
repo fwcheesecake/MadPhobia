@@ -6,12 +6,26 @@ public class Escudo extends Objeto {
     private int escudo;
 
     public static ImageIcon[] iconos = {
-            new ImageIcon(Consumible.class.getResource("/imagenes/objetos/consumibles/lata.png"))
+            new ImageIcon(Escudo.class.getResource("/sprites/consumibles/escudos/chaleco.png")),
+            new ImageIcon(Escudo.class.getResource("/sprites/consumibles/escudos/chalecopesado.png")),
+            new ImageIcon(Escudo.class.getResource("/sprites/consumibles/escudos/mascara.png"))
     };
+
+    public static void inicializarIconos() {
+        iconos[0].setDescription("Chaleco");
+        iconos[1].setDescription("ChalecoPesado");
+        iconos[2].setDescription("Mascara");
+
+    }
 
     public Escudo() {
         super();
         setEscudo(0);
+    }
+
+    public Escudo(String nombre, int imagen, String descripcion, int escudo) {
+        super(nombre, imagen, descripcion);
+        setEscudo(escudo);
     }
 
     public int getEscudo() {
