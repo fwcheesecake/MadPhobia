@@ -1,102 +1,122 @@
 package elementos;
 
+import com.sun.jdi.IntegerValue;
 import entidades.Consumible;
 import entidades.Jugador;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Indicador extends JPanel {
-
+public class Indicador extends JLayeredPane {
     JLabel pic;
-    JLabel nombreJugador;
-    JProgressBar indicadorVida;
-    JProgressBar indicadorEscudo;
-    JLabel indicadorDano;
-
-    JPanel contenedorEfectos;
-
+    JTextField ImgJugador;
+    JTextField Arma1 , Arma2;
+    ImageIcon im,im1,im2,im3,im4,im5,im6;
+    JLabel icon1,icon2,icon3,icon4,icon5,icon6;
+    JLabel texDAño,texVida,texEsc;
     public Indicador() {
-        GridBagConstraints layout = new GridBagConstraints();
-        setLayout(new GridBagLayout());
-
+        setLayout(null);
         pic = new JLabel();
-        nombreJugador = new JLabel("Nombre");
-        indicadorVida = new JProgressBar();
-        indicadorEscudo = new JProgressBar();
-        indicadorDano = new JLabel("Dano");
 
-        contenedorEfectos = new JPanel();
 
-        layout.fill = GridBagConstraints.BOTH;
+        ImgJugador = new JTextField("AA");
+        ImgJugador.setEnabled(false);
+        ImgJugador.setEditable(false);
+        ImgJugador.setBounds(46,10,64,60);
+        ImgJugador.setBackground(Color.darkGray);
+        ImgJugador.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(ImgJugador, Integer.valueOf(1));
 
-        pic.setPreferredSize(new Dimension(66, 66));
+        Arma1 = new JTextField("AA");
+        Arma1.setEnabled(false);
+        Arma1.setEditable(false);
+        Arma1.setBounds(117,31,40,40);
+        Arma1.setBackground(Color.darkGray);
+        Arma1.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(Arma1, Integer.valueOf(1));
 
-        pic.setIcon(Jugador.iconos[0]);
+        Arma2 = new JTextField("AA");
+        Arma2.setEnabled(false);
+        Arma2.setEditable(false);
+        Arma2.setBackground(Color.darkGray);
+        Arma2.setBounds(162,31,40,40);
+        Arma2.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(Arma2, Integer.valueOf(1));
 
-        pic.setHorizontalAlignment(JLabel.CENTER);
-        pic.setVerticalAlignment(JLabel.CENTER);
-        pic.setHorizontalTextPosition(JLabel.CENTER);
-        pic.setVerticalTextPosition(JLabel.CENTER);
+        //Icono de fuego
+        icon1 = new JLabel();
+        im1 = new ImageIcon(getClass().getResource("/sprites/hud/iconos/fuego.png"));
+        icon1.setIcon(im1);
+        icon1.setBounds(45, 73, 20, 20);
+        icon1.setHorizontalAlignment(icon1.CENTER);
+        icon1.setBorder(BorderFactory.createLineBorder(Color.black));
+        im1.setImage(im1.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
+        add(icon1, Integer.valueOf(1));
 
-        pic.setBorder(BorderFactory.createLineBorder(new Color(0x0000FF)));
+        //Icono de radiacion
+        icon2 = new JLabel();
+        im2 = new ImageIcon(getClass().getResource("/sprites/hud/iconos/radia.png"));
+        icon2.setIcon(im2);
+        icon2.setHorizontalAlignment(icon1.CENTER);
+        icon2.setBounds(68, 73, 20, 20);
+        icon2.setBorder(BorderFactory.createLineBorder(Color.black));
+        im2.setImage(im2.getImage().getScaledInstance(10, 15, Image.SCALE_DEFAULT));
+        add(icon2, Integer.valueOf(1));
 
-        layout.gridx = 0;
-        layout.gridy = 0;
-        layout.gridwidth = 3;
-        layout.gridheight = 3;
+        //Icono de sangre
+        icon3 = new JLabel();
+        im3 = new ImageIcon(getClass().getResource("/sprites/hud/iconos/sangre.png"));
+        icon3.setIcon(im3);
+        icon3.setHorizontalAlignment(icon3.CENTER);
+        icon3.setBounds(90, 73, 20, 20);
+        icon3.setBorder(BorderFactory.createLineBorder(Color.black));
+        im3.setImage(im3.getImage().getScaledInstance(15, 12, Image.SCALE_DEFAULT));
+        add(icon3, Integer.valueOf(1));
 
-        add(pic, layout);
+        //icono de daño
+        icon4 = new JLabel();
+        im4 = new ImageIcon(getClass().getResource("/sprites/hud/iconos/dano.png"));
+        icon4.setIcon(im4);
+        icon4.setHorizontalAlignment(icon4.CENTER);
+        icon4.setBounds(116, 73, 20, 20);
+        icon4.setBorder(BorderFactory.createLineBorder(Color.black));
+        im4.setImage(im4.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
+        add(icon4, Integer.valueOf(1));
 
-        contenedorEfectos.setPreferredSize(new Dimension(66, 18));
-        contenedorEfectos.setBorder(BorderFactory.createLineBorder(new Color(0xF700FF)));
+        texDAño = new JLabel("AA");
+        texDAño.setBounds(137, 73, 20, 20);
+        texDAño.setForeground(Color.WHITE);
+        add(texDAño, Integer.valueOf(1));
 
-        layout.gridx = 0;
-        layout.gridy = 3;
-        layout.gridwidth = 3;
-        layout.gridheight = 1;
+        //Icono de vida
+        icon5 = new JLabel();
+        im5 = new ImageIcon(getClass().getResource("/sprites/hud/iconos/salud.png"));
+        icon5.setIcon(im5);
+        icon5.setHorizontalAlignment(icon5.CENTER);
+        icon5.setBounds(118, 9, 20, 20);
+        icon5.setBorder(BorderFactory.createLineBorder(Color.black));
+        im5.setImage(im5.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
+        add(icon5, Integer.valueOf(1));
 
-        add(contenedorEfectos, layout);
+        texVida = new JLabel("AA");
+        texVida.setBounds(140, 9, 20, 20);
+        texVida.setForeground(Color.WHITE);
+        add(texVida, Integer.valueOf(1));
 
-        nombreJugador.setPreferredSize(new Dimension(106, 18));
-        nombreJugador.setBorder(BorderFactory.createLineBorder(new Color(0xFF0000)));
+        //Icono deEscudo
+        icon6 = new JLabel();
+        im6 = new ImageIcon(getClass().getResource("/sprites/hud/iconos/escudo.png"));
+        icon6.setIcon(im6);
+        icon6.setHorizontalAlignment(icon6.CENTER);
+        icon6.setBounds(164, 9, 20, 20);
+        icon6.setBorder(BorderFactory.createLineBorder(Color.black));
+        im6.setImage(im6.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
+        add(icon6, Integer.valueOf(1));
 
-        layout.gridx = 3;
-        layout.gridy = 0;
-        layout.gridwidth = 1;
-        layout.gridheight = 1;
-
-        add(nombreJugador, layout);
-
-        indicadorVida.setPreferredSize(new Dimension(168, 20));
-        indicadorVida.setBorder(BorderFactory.createLineBorder(new Color(0xFFA300)));
-
-        layout.gridx = 3;
-        layout.gridy = 1;
-        layout.gridwidth = 1;
-        layout.gridheight = 1;
-
-        add(indicadorVida, layout);
-
-        indicadorEscudo.setPreferredSize(new Dimension(168, 20));
-        indicadorEscudo.setBorder(BorderFactory.createLineBorder(new Color(0x00FFE5)));
-
-        layout.gridx = 3;
-        layout.gridy = 2;
-        layout.gridwidth = 1;
-        layout.gridheight = 1;
-
-        add(indicadorEscudo, layout);
-
-        indicadorDano.setPreferredSize(new Dimension(106, 18));
-        indicadorDano.setBorder(BorderFactory.createLineBorder(new Color(0x37FF00)));
-
-        layout.gridx = 3;
-        layout.gridy = 3;
-        layout.gridwidth = 1;
-        layout.gridheight = 1;
-
-        add(indicadorDano, layout);
+        texEsc = new JLabel("AA");
+        texEsc.setBounds(185, 9, 20, 20);
+        texEsc.setForeground(Color.WHITE);
+        add(texEsc, Integer.valueOf(1));
 
     }
 }
