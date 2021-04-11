@@ -11,11 +11,16 @@ public class Escudo extends Objeto {
             new ImageIcon(Escudo.class.getResource("/sprites/consumibles/escudos/mascara.png"))
     };
 
+    public static String[] descripcion = {
+            "Chaleco normal, no proteje suficiente",
+            "Chaleco pesado, es muy bueno pero es pesado",
+            "Mascara de gas, protege del gas"
+    };
+
     public static void inicializarIconos() {
         iconos[0].setDescription("Chaleco");
-        iconos[1].setDescription("ChalecoPesado");
+        iconos[1].setDescription("Chaleco Pesado");
         iconos[2].setDescription("Mascara");
-
     }
 
     public Escudo() {

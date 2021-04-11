@@ -8,36 +8,33 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Indicador extends JLayeredPane {
-    JLabel pic;
-    JTextField ImgJugador;
-    JTextField Arma1 , Arma2;
-    ImageIcon im,im1,im2,im3,im4,im5,im6;
-    JLabel icon1,icon2,icon3,icon4,icon5,icon6;
-    JLabel texDAño,texVida,texEsc;
+    public JLabel pic;
+    public JLabel ImgJugador;
+    public JLabel Arma1 , Arma2;
+    public ImageIcon im,im1,im2,im3,im4,im5,im6;
+    public JLabel icon1,icon2,icon3,icon4,icon5,icon6;
+    public JLabel texDAño,texVida,texEsc;
+
     public Indicador() {
         setLayout(null);
         pic = new JLabel();
 
-
-        ImgJugador = new JTextField("AA");
-        ImgJugador.setEnabled(false);
-        ImgJugador.setEditable(false);
+        ImgJugador = new JLabel("");
+        ImgJugador.setOpaque(false);
         ImgJugador.setBounds(46,10,64,60);
         ImgJugador.setBackground(Color.darkGray);
         ImgJugador.setBorder(BorderFactory.createLineBorder(Color.black));
         add(ImgJugador, Integer.valueOf(1));
 
-        Arma1 = new JTextField("AA");
+        Arma1 = new JLabel("");
         Arma1.setEnabled(false);
-        Arma1.setEditable(false);
         Arma1.setBounds(117,31,40,40);
         Arma1.setBackground(Color.darkGray);
         Arma1.setBorder(BorderFactory.createLineBorder(Color.black));
         add(Arma1, Integer.valueOf(1));
 
-        Arma2 = new JTextField("AA");
+        Arma2 = new JLabel("");
         Arma2.setEnabled(false);
-        Arma2.setEditable(false);
         Arma2.setBackground(Color.darkGray);
         Arma2.setBounds(162,31,40,40);
         Arma2.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -51,6 +48,7 @@ public class Indicador extends JLayeredPane {
         icon1.setHorizontalAlignment(icon1.CENTER);
         icon1.setBorder(BorderFactory.createLineBorder(Color.black));
         im1.setImage(im1.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
+        icon1.setVisible(false);
         add(icon1, Integer.valueOf(1));
 
         //Icono de radiacion
@@ -61,6 +59,7 @@ public class Indicador extends JLayeredPane {
         icon2.setBounds(68, 73, 20, 20);
         icon2.setBorder(BorderFactory.createLineBorder(Color.black));
         im2.setImage(im2.getImage().getScaledInstance(10, 15, Image.SCALE_DEFAULT));
+        icon2.setVisible(false);
         add(icon2, Integer.valueOf(1));
 
         //Icono de sangre
@@ -71,6 +70,7 @@ public class Indicador extends JLayeredPane {
         icon3.setBounds(90, 73, 20, 20);
         icon3.setBorder(BorderFactory.createLineBorder(Color.black));
         im3.setImage(im3.getImage().getScaledInstance(15, 12, Image.SCALE_DEFAULT));
+        icon3.setVisible(false);
         add(icon3, Integer.valueOf(1));
 
         //icono de daño
@@ -83,7 +83,7 @@ public class Indicador extends JLayeredPane {
         im4.setImage(im4.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
         add(icon4, Integer.valueOf(1));
 
-        texDAño = new JLabel("AA");
+        texDAño = new JLabel("15");
         texDAño.setBounds(137, 73, 20, 20);
         texDAño.setForeground(Color.WHITE);
         add(texDAño, Integer.valueOf(1));
@@ -98,7 +98,7 @@ public class Indicador extends JLayeredPane {
         im5.setImage(im5.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
         add(icon5, Integer.valueOf(1));
 
-        texVida = new JLabel("AA");
+        texVida = new JLabel("100");
         texVida.setBounds(140, 9, 20, 20);
         texVida.setForeground(Color.WHITE);
         add(texVida, Integer.valueOf(1));
@@ -113,7 +113,7 @@ public class Indicador extends JLayeredPane {
         im6.setImage(im6.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
         add(icon6, Integer.valueOf(1));
 
-        texEsc = new JLabel("bb");
+        texEsc = new JLabel("0");
         texEsc.setBounds(185, 9, 20, 20);
         texEsc.setForeground(Color.WHITE);
         add(texEsc, Integer.valueOf(1));

@@ -44,6 +44,6 @@ public class Ser extends Entidad{
     }
 
     public boolean estaMuerto() {
-        return vida == 0;
+        return vida <= 0;
     }
 }

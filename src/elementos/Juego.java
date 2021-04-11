@@ -1,8 +1,6 @@
 package elementos;
 
-import entidades.Consumible;
-import entidades.Enemigo;
-import entidades.Jugador;
+import entidades.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +14,8 @@ public class Juego extends JFrame {
     ImageIcon im1;
     JLabel a1;
     int wIndicador, hIndicador, xIndicador2, yIndicador3;
+
+    public static JLabel fondo = new JLabel();
 
     public static Jugador jugador1 = new Jugador("Jonathan", 0, 100, 0, 15, new Point(0, 0), Jugador.iconos[0]),
             jugador2 = new Jugador("Antonio", 1, 100, 0, 15, new Point(0, 0), Jugador.iconos[1]),
@@ -41,10 +41,22 @@ public class Juego extends JFrame {
         contentPane.setBounds(0, 0, width, height);
         add(contentPane);
 
+        fondo.setBounds((width - height - 10) / 2, 10, height - 20, height - 20);
+        fondo.setIcon(Habitacion.getPiso());
+        fondo.setHorizontalAlignment(JLabel.CENTER);
+        fondo.setVerticalAlignment(JLabel.CENTER);
+        fondo.setVerticalTextPosition(JLabel.CENTER);
+        fondo.setHorizontalTextPosition(JLabel.CENTER);
+        contentPane.add(fondo, Integer.valueOf(0));
+
         Habitacion habitacion = new Habitacion();
         habitacion.setBackground(new Color(0x2F2F2F));
         habitacion.setBounds((width - height - 10) / 2, 10, height - 20, height - 20);
-        contentPane.add(habitacion, Integer.valueOf(0));
+        contentPane.add(habitacion, Integer.valueOf(1));
+        habitacion.setOpaque(false);
+
+        addIndicadoresDeJugador();
+        addIndicadorCasilla();
 
         indicadorInventario = new JPanel();
         JButton Mochila=new JButton("");
@@ -58,9 +70,6 @@ public class Juego extends JFrame {
         indicadorInventario.setBounds(xIndicador2, yIndicador3, wIndicador, hIndicador);
         indicadorInventario.setLayout(new GridLayout(1,3));
         contentPane.add(indicadorInventario, Integer.valueOf(1));
-
-        addIndicadoresDeJugador();
-        addIndicadorCasilla();
 
         contentPane.add(jugador1.getInventario(), Integer.valueOf(2));
         jugador1.getInventario().crearInventarioGlobal();
@@ -124,6 +133,9 @@ public class Juego extends JFrame {
         Juego juego = new Juego();
 
         Enemigo.inicializarIconos();
+        Consumible.inicializarIconos();
+        Arma.inicializarIconos();
+        Escudo.inicializarIconos();
 
         juego.setFullscreen();
         juego.setVisible(true);

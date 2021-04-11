@@ -14,8 +14,22 @@ public class Arma extends Objeto {
             new ImageIcon(Arma.class.getResource("/sprites/armas/fuego/shotgun.png")),
             new ImageIcon(Arma.class.getResource("/sprites/armas/fuego/uzi.png")),
 
-            new ImageIcon(Arma.class.getResource("/sprites/armas/meele/bottle.png"))
+            new ImageIcon(Arma.class.getResource("/sprites/armas/meele/bottle.png")),
+            new ImageIcon(Arma.class.getResource("/sprites/armas/meele/bat.png"))
     };
+
+    public static void inicializarIconos() {
+        iconos[0].setDescription("Granada");
+        iconos[1].setDescription("Molotov");
+
+        iconos[2].setDescription("Glock");
+        iconos[3].setDescription("Revolver");
+        iconos[4].setDescription("Shot Gun");
+        iconos[5].setDescription("Uzi");
+
+        iconos[6].setDescription("Botella");
+        iconos[7].setDescription("Bate");
+    }
 
     public static String[] descripcion = {
             "Gran explosion",
@@ -24,7 +38,8 @@ public class Arma extends Objeto {
             "Un arma poderosa",
             "Le desinstala MadPhobia al enemigo",
             "UziXD",
-            "Que dijistes del america"
+            "Que dijistes del america",
+            "Home Run"
     };
 
     int dano;

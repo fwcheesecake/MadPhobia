@@ -8,15 +8,15 @@ public class Consumible extends Objeto {
             new ImageIcon(Consumible.class.getResource("/sprites/consumibles/salud/lata.png")),
             new ImageIcon(Consumible.class.getResource("/sprites/consumibles/salud/lata2.png"))
     };
+
     public static String[] descripcion = {
-            "Lata de La coste*a",
-            "Atun tu*y para gran deleite"
+            "Frijoles charros de La coste*a traidos desde monterrey",
+            "Lata de atun Atun tu*y caducada"
     };
 
-
     public static void inicializarIconos() {
-        iconos[0].setDescription("Lanta");
-        iconos[1].setDescription("Lata2");
+        iconos[0].setDescription("Frijoles enlatados");
+        iconos[1].setDescription("Atun enlatado");
     }
 
     public Consumible() {
