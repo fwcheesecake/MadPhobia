@@ -113,7 +113,7 @@ public class Indicador extends JLayeredPane {
         im6.setImage(im6.getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT));
         add(icon6, Integer.valueOf(1));
 
-        texEsc = new JLabel("AA");
+        texEsc = new JLabel("bb");
         texEsc.setBounds(185, 9, 20, 20);
         texEsc.setForeground(Color.WHITE);
         add(texEsc, Integer.valueOf(1));

@@ -86,7 +86,7 @@ public class Juego extends JFrame {
         im1.setImage(im1.getImage().getScaledInstance(400, 420, Image.SCALE_DEFAULT));
         indicadorCasilla.setBounds(1620,200 + gap /10, 400,500);
 
-        feed1 = new JLabel("AA");
+        feed1 = new JLabel("bb");
         feed1.setBounds(143,30,115,125);
         feed1.setBorder(BorderFactory.createLineBorder(Color.black));
         indicadorCasilla.add(feed1, Integer.valueOf(1));
