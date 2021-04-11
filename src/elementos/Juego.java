@@ -10,8 +10,11 @@ import java.awt.*;
 public class Juego extends JFrame {
     private JLayeredPane contentPane;
     private JPanel indicadorInventario;
-    private JPanel indicadorCasilla;
+    private  JLayeredPane indicadorCasilla;
+    JLabel feed1, feed2;
     int width, height;
+    ImageIcon im1;
+    JLabel a1;
     int wIndicador, hIndicador, xIndicador2, yIndicador3;
 
     public static Jugador jugador1 = new Jugador("Jonathan", 0, 100, 0, 15, new Point(0, 0), Jugador.iconos[0]),
@@ -70,32 +73,50 @@ public class Juego extends JFrame {
     }
 
     public void addIndicadorCasilla() {
-        indicadorCasilla =new JPanel();
+
+        indicadorCasilla =new  JLayeredPane();
 
         indicadorCasilla.setOpaque(false);
-        indicadorCasilla.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         int gap = height - hIndicador * 2;
-        indicadorCasilla.setBounds(xIndicador2,hIndicador + gap /10, wIndicador,gap - (gap / 10) * 2);
+        a1= new JLabel();
+        im1 = new ImageIcon(getClass().getResource("/sprites/hud/feed.png"));
+        a1.setIcon(im1);
+        a1.setBounds(0, 0, 400, 420);
+        indicadorCasilla.add(a1, Integer.valueOf(0));
+        im1.setImage(im1.getImage().getScaledInstance(400, 420, Image.SCALE_DEFAULT));
+        indicadorCasilla.setBounds(1620,200 + gap /10, 400,500);
+
+        feed1 = new JLabel("bb");
+        feed1.setBounds(143,30,115,125);
+        feed1.setBorder(BorderFactory.createLineBorder(Color.black));
+        indicadorCasilla.add(feed1, Integer.valueOf(1));
+
+        feed2 = new JLabel("AA");
+        feed2.setBounds(123,185,153,195);
+        feed2.setBorder(BorderFactory.createLineBorder(Color.black));
+        indicadorCasilla.add(feed2, Integer.valueOf(1));
         contentPane.add(indicadorCasilla,Integer.valueOf(1));
+
+
     }
     public void addIndicadoresDeJugador() {
         wIndicador = width / 8;
         hIndicador = height / 12;
         jugador1.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador1.getIndicador().setOpaque(false);
-        jugador1.getIndicador().setBounds(0, 0, wIndicador, hIndicador);
+        jugador1.getIndicador().setBounds(0, 0, 255, 105);
         contentPane.add(jugador1.getIndicador(), Integer.valueOf(1));
 
         xIndicador2 = width - wIndicador;
         jugador2.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador2.getIndicador().setOpaque(false);
-        jugador2.getIndicador().setBounds(xIndicador2, 0, wIndicador, hIndicador);
+        jugador2.getIndicador().setBounds(xIndicador2, 0, 255, 105);
         contentPane.add(jugador2.getIndicador(), Integer.valueOf(1));
 
         yIndicador3 = height - hIndicador;
         jugador3.getIndicador().setOpaque(false);
         jugador3.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
-        jugador3.getIndicador().setBounds(0, yIndicador3, wIndicador, hIndicador);
+        jugador3.getIndicador().setBounds(0, yIndicador3, 255, 105);
         contentPane.add(jugador3.getIndicador(), Integer.valueOf(1));
     }
 
