@@ -104,19 +104,19 @@ public class Juego extends JFrame {
         hIndicador = height / 12;
         jugador1.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador1.getIndicador().setOpaque(false);
-        jugador1.getIndicador().setBounds(0, 0, 255, 105);
+        jugador1.getIndicador().setBounds(0, 0, 248, 104);
         contentPane.add(jugador1.getIndicador(), Integer.valueOf(1));
 
         xIndicador2 = width - wIndicador;
         jugador2.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador2.getIndicador().setOpaque(false);
-        jugador2.getIndicador().setBounds(xIndicador2, 0, 255, 105);
+        jugador2.getIndicador().setBounds(1670, 0, 248, 104);
         contentPane.add(jugador2.getIndicador(), Integer.valueOf(1));
 
         yIndicador3 = height - hIndicador;
         jugador3.getIndicador().setOpaque(false);
         jugador3.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
-        jugador3.getIndicador().setBounds(0, yIndicador3, 255, 105);
+        jugador3.getIndicador().setBounds(0, 975, 248, 104);
         contentPane.add(jugador3.getIndicador(), Integer.valueOf(1));
     }
 
