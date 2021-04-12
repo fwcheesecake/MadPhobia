@@ -36,7 +36,6 @@ Existen 3 efectos que un enemigo puede aplicar sobre el jugador:
 - Hemorragia
   - Hace 2 de dano por segundo durante 10 segundos
   - Cualquier enemigo puede causar emorragia con probabilidad de 0.3
-
 ## Mecanicas y Reglas de MadPhobia
 - Las casillas no mostraran el contenido de ellas hasta que un jugador se mueva a una
 - Cada jugador cuenta con un click por turno
@@ -45,3 +44,6 @@ Existen 3 efectos que un enemigo puede aplicar sobre el jugador:
   - Interactuar con la entidad de la casilla. Si la entidad es un enemigo el jugador ataca, por otro lado, si es un objeto el jugador la guarda en su inventario
 - Al recoger un arma o un escudo por primera vez, se equipan automaticamente
 - Las armas y escudos tienen 50% de probabilidad de aparecer en cada nivel
+## Requerimentos
+- Intel Atom de 1.6GHz o equivalente
+- 512MB de memoria RAM
