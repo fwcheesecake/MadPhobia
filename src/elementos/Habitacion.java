@@ -386,8 +386,6 @@ public class Habitacion extends JPanel implements ActionListener {
             y = rand.nextInt(columnas);
         } while(casillas[x][y].esPared());
         casillas[x][y].setEstado(Estado.PUERTA);
-        casillas[x][y].setOpaque(true);
-        casillas[x][y].setBackground(new Color(0x2A2AEC));
 
         do {
             x = rand.nextInt(filas);
@@ -433,8 +431,6 @@ public class Habitacion extends JPanel implements ActionListener {
             Consumible entidad = new Consumible(nombre, index, Consumible.descripcion[index], regeneracion + nivel);
 
             casillas[x][y].setEntidad(entidad);
-            casillas[x][y].setBackground(new Color(0x6EFD47));
-            casillas[x][y].setOpaque(true);
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
@@ -461,8 +457,6 @@ public class Habitacion extends JPanel implements ActionListener {
             Enemigo entidad = new Enemigo(nombre, index, 100, 0, fuerza + nivel, fortaleza, debilidad);
 
             casillas[x][y].setEntidad(entidad);
-            casillas[x][y].setBackground(new Color(0xEA1E1E));
-            casillas[x][y].setOpaque(true);
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
@@ -490,8 +484,6 @@ public class Habitacion extends JPanel implements ActionListener {
             Arma entidad = new Arma(nombre, index, Arma.descripcion[index], dano + nivel / 10, tipoRandom(rand.nextInt()));
 
             casillas[x][y].setEntidad(entidad);
-            casillas[x][y].setBackground(new Color(0xE9572D));
-            casillas[x][y].setOpaque(true);
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
@@ -519,8 +511,6 @@ public class Habitacion extends JPanel implements ActionListener {
 
 
             casillas[x][y].setEntidad(entidad);
-            casillas[x][y].setBackground(new Color(0x2A81CD));
-            casillas[x][y].setOpaque(true);
             casillas[x][y].setEstado(Estado.OCUPADO);
         }
     }
