@@ -198,6 +198,7 @@ public class Habitacion extends JPanel implements ActionListener {
 
         if(casillaSeleccionada.esPuerta()) {
             click = 2;
+            Juego.actualizarFeed();
             crearNuevaHabitacion();
         } else if(casillaSeleccionada.estaOcupada()) {
             if(casillaSeleccionada.getEntidad() instanceof Consumible) {
@@ -206,24 +207,30 @@ public class Habitacion extends JPanel implements ActionListener {
                     casillaSeleccionada.setEstado(Estado.NORMAL);
                     casillaSeleccionada.setEntidad(null);
                 }
+                Juego.actualizarFeed((Consumible) casillaSeleccionada.getEntidad());
             } else if(casillaSeleccionada.getEntidad() instanceof Escudo) {
                 if(click == 2) {
                     Juego.jugadorActual.recogerObjeto((Escudo) casillaSeleccionada.getEntidad());
                     casillaSeleccionada.setEstado(Estado.NORMAL);
                     casillaSeleccionada.setEntidad(null);
                 }
+                Juego.actualizarFeed((Escudo) casillaSeleccionada.getEntidad());
             } else if(casillaSeleccionada.getEntidad() instanceof Arma) {
                 if(click == 2) {
                     Juego.jugadorActual.recogerObjeto((Arma) casillaSeleccionada.getEntidad());
                     casillaSeleccionada.setEstado(Estado.NORMAL);
                     casillaSeleccionada.setEntidad(null);
                 }
+                Juego.actualizarFeed((Arma) casillaSeleccionada.getEntidad());
             } else {
                 if(click == 2)
                     ataque(casillaSeleccionada);
+                Juego.actualizarFeed((Enemigo) casillaSeleccionada.getEntidad());
             }
-        } else
+        } else {
+            Juego.actualizarFeed();
             click = 2;
+        }
 
         System.out.println("----------------------------------------------------------------");
         System.out.println("Nombre: " + Juego.jugadorActual.getNombre() + "\n" +
@@ -241,7 +248,17 @@ public class Habitacion extends JPanel implements ActionListener {
         }
         System.out.println("----------------------------------------------------------------");
 
-        Juego.gameOver();
+        if(Juego.gameOver()) {
+            Juego.derrotado.setVisible(true);
+            Juego.derrotado.toFront();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+            System.exit(0);
+        }
+
         if(click == 2) {
             do {
                 Juego.jugadorActual.setCasilla(new Point(casillaSeleccionada.getPosX(), casillaSeleccionada.getPosY()));
@@ -250,6 +267,12 @@ public class Habitacion extends JPanel implements ActionListener {
                     case 0 -> Juego.jugadorActual = Juego.jugador1;
                     case 1 -> Juego.jugadorActual = Juego.jugador2;
                     case 2 -> Juego.jugadorActual = Juego.jugador3;
+                }
+
+                if(Juego.jugadorActual.estaMuerto()
+                        && Juego.jugadorActual.getIndicador().isEnabled()) {
+                    Juego.jugadorActual.getIndicador().setOpaque(false);
+                    Juego.jugadorActual.getIndicador().setEnabled(false);
                 }
             } while (Juego.jugadorActual.estaMuerto());
             click = 0;
@@ -329,7 +352,11 @@ public class Habitacion extends JPanel implements ActionListener {
         Juego.jugadorActual.setEscudo(escudoJugador);
         Juego.jugadorActual.setVida(vidaJugador);
 
+
         enemigo.setVida(vidaEnemigo);
+
+        Juego.jugadorActual.getIndicador().texVida.setText("" + Juego.jugadorActual.getVida());
+        Juego.jugadorActual.getIndicador().texEsc.setText("" + Juego.jugadorActual.getEscudo());
 
         if(enemigo.estaMuerto()) {
             casillaSeleccionada.setEstado(Estado.NORMAL);
@@ -376,7 +403,13 @@ public class Habitacion extends JPanel implements ActionListener {
         scaleImage(Jugador.iconos[1], new Dimension(90, 90));
         scaleImage(Jugador.iconos[2], new Dimension(90, 90));
 
-        casillas[x][y].setIcon(Jugador.iconos[0]);
+        if (Juego.jugador1.equals(Juego.jugadorActual)) {
+            casillas[x][y].setIcon(Jugador.iconos[0]);
+        } else if (Juego.jugador2.equals(Juego.jugadorActual)) {
+            casillas[x][y].setIcon(Jugador.iconos[1]);
+        } else {
+            casillas[x][y].setIcon(Jugador.iconos[2]);
+        }
     }
 
     private void agregarConsumibles() {
