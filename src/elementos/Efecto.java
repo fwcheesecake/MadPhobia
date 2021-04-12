@@ -57,6 +57,15 @@ public class Efecto {
                     }
                     jugador.getIndicador().icon2.setVisible(false);
                 }
+                if(Juego.gameOver()) {
+                    Derrotado d = new Derrotado();
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
+                    System.exit(0);
+                }
             }
         });
         aplicacion.start();

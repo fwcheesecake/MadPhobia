@@ -249,8 +249,7 @@ public class Habitacion extends JPanel implements ActionListener {
         System.out.println("----------------------------------------------------------------");
 
         if(Juego.gameOver()) {
-            Juego.derrotado.setVisible(true);
-            Juego.derrotado.toFront();
+            Derrotado d = new Derrotado();
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException interruptedException) {
