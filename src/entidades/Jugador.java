@@ -41,16 +41,22 @@ public class Jugador extends Ser {
         this.inventario = inventario;
     }
 
+    private ImageIcon returnScaledImage(ImageIcon icon, int w, int h) {
+        return new ImageIcon(icon.getImage().getScaledInstance(w, h, Image.SCALE_DEFAULT));
+    }
+
     public void recogerObjeto(Objeto objeto){
         if(objeto instanceof Arma && getInventario().getArmaEquipada() == null) {
             Arma arma = (Arma) objeto;
             getIndicador().texDAño.setText("" + (arma.getDano() + getFuerza()));
             getInventario().setArmaEquipada(arma);
+            getIndicador().arma.setIcon(returnScaledImage(Arma.iconos[arma.getImagen()], 40, 40));
         } else if(objeto instanceof Escudo && getInventario().getEscudoEquipado() == null) {
             Escudo escudo = (Escudo) objeto;
             getIndicador().texEsc.setText("" + escudo.getEscudo());
             setEscudo(escudo.getEscudo());
             getInventario().setEscudoEquipado(escudo);
+            getIndicador().escudo.setIcon(returnScaledImage(Escudo.iconos[escudo.getImagen()], 40, 40));
         } else {
             for (int i = 0; i < 9; i++) {
                 if (getInventario().getMochila()[i] == null) {

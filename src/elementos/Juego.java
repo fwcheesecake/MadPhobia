@@ -13,7 +13,6 @@ public class Juego extends JFrame {
     static JLabel feedIcon;
     static JTextArea feedDescripcion;
 
-
     int width, height;
     static ImageIcon im1;
     static JLabel a1;
@@ -27,22 +26,6 @@ public class Juego extends JFrame {
             jugador3 = new Jugador("Daniela", 2, 100, 0, 15, new Point(0, 0), Jugador.iconos[2]);
 
     public static Jugador jugadorActual = jugador1;
-
-    public static JFrame derrotado;
-
-    public static void crearFrameDerrota() {
-        derrotado = new JFrame();
-        derrotado.setLayout(null);
-
-        JLabel fondo = new JLabel(new ImageIcon(Juego.class.getResource("/sprites/screens/muerte.png")));
-        fondo.setBounds(0, 0, 400, 300);
-        derrotado.getContentPane().add(fondo);
-        fondo.setVisible(true);
-
-        derrotado.setBounds(500, 300, 400, 300);
-        derrotado.setLocationRelativeTo(null);
-        derrotado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
 
     public static boolean gameOver() {
         return jugador1.estaMuerto() && jugador2.estaMuerto() && jugador3.estaMuerto();
@@ -62,7 +45,7 @@ public class Juego extends JFrame {
         contentPane.setBounds(0, 0, width, height);
         add(contentPane);
 
-        fondo.setBounds((width - height - 10) / 2, 10, height - 20, height - 20);
+        fondo.setBounds((width - height - 10) / 2, 10, height - 21, height - 21);
         fondo.setIcon(Habitacion.getPiso());
         fondo.setHorizontalAlignment(JLabel.CENTER);
         fondo.setVerticalAlignment(JLabel.CENTER);
@@ -100,6 +83,8 @@ public class Juego extends JFrame {
 
         contentPane.add(jugador3.getInventario(), Integer.valueOf(2));
         jugador3.getInventario().crearInventarioGlobal();
+
+
     }
 
     public void addIndicadorCasilla() {
@@ -196,24 +181,24 @@ public class Juego extends JFrame {
         jugador1.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador1.getIndicador().setOpaque(false);
         jugador1.getIndicador().setBounds(0, 0, 248, 104);
-        jugador1.getIndicador().ImgJugador.setIcon(Jugador.iconos[0]);
-        jugador1.getIndicador().ImgJugador.setHorizontalAlignment(JLabel.CENTER);
+        jugador1.getIndicador().imgJugador.setIcon(Jugador.iconos[0]);
+        jugador1.getIndicador().imgJugador.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(jugador1.getIndicador(), Integer.valueOf(1));
 
         xIndicador2 = width - wIndicador;
         jugador2.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador2.getIndicador().setOpaque(false);
         jugador2.getIndicador().setBounds(1670, 0, 248, 104);
-        jugador2.getIndicador().ImgJugador.setIcon(Jugador.iconos[1]);
-        jugador2.getIndicador().ImgJugador.setHorizontalAlignment(JLabel.CENTER);
+        jugador2.getIndicador().imgJugador.setIcon(Jugador.iconos[1]);
+        jugador2.getIndicador().imgJugador.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(jugador2.getIndicador(), Integer.valueOf(1));
 
         yIndicador3 = height - hIndicador;
         jugador3.getIndicador().setOpaque(false);
         jugador3.getIndicador().setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
         jugador3.getIndicador().setBounds(0, 975, 248, 104);
-        jugador3.getIndicador().ImgJugador.setIcon(Jugador.iconos[2]);
-        jugador3.getIndicador().ImgJugador.setHorizontalAlignment(JLabel.CENTER);
+        jugador3.getIndicador().imgJugador.setIcon(Jugador.iconos[2]);
+        jugador3.getIndicador().imgJugador.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(jugador3.getIndicador(), Integer.valueOf(1));
     }
 
@@ -222,7 +207,6 @@ public class Juego extends JFrame {
         Consumible.inicializarIconos();
         Arma.inicializarIconos();
         Escudo.inicializarIconos();
-        crearFrameDerrota();
 
         Juego juego = new Juego();
 

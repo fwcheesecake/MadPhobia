@@ -1,16 +1,12 @@
 package elementos;
 
-import com.sun.jdi.IntegerValue;
-import entidades.Consumible;
-import entidades.Jugador;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class Indicador extends JLayeredPane {
     public JLabel pic;
-    public JLabel ImgJugador;
-    public JLabel Arma1 , Arma2;
+    public JLabel imgJugador;
+    public JLabel arma, escudo;
     public ImageIcon im,im1,im2,im3,im4,im5,im6;
     public JLabel icon1,icon2,icon3,icon4,icon5,icon6;
     public JLabel texDAño,texVida,texEsc;
@@ -18,26 +14,24 @@ public class Indicador extends JLayeredPane {
     public Indicador() {
         setLayout(null);
 
-        ImgJugador = new JLabel("");
-        ImgJugador.setOpaque(false);
-        ImgJugador.setBounds(46,10,64,60);
-        ImgJugador.setBackground(Color.darkGray);
-        ImgJugador.setBorder(BorderFactory.createLineBorder(Color.black));
-        add(ImgJugador, Integer.valueOf(1));
+        imgJugador = new JLabel("");
+        imgJugador.setOpaque(false);
+        imgJugador.setBounds(46,10,64,60);
+        imgJugador.setBackground(Color.darkGray);
+        imgJugador.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(imgJugador, Integer.valueOf(1));
 
-        Arma1 = new JLabel("");
-        Arma1.setEnabled(false);
-        Arma1.setBounds(117,31,40,40);
-        Arma1.setBackground(Color.darkGray);
-        Arma1.setBorder(BorderFactory.createLineBorder(Color.black));
-        add(Arma1, Integer.valueOf(1));
+        arma = new JLabel("");
+        arma.setBounds(117,31,40,40);
+        arma.setBackground(Color.darkGray);
+        arma.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(arma, Integer.valueOf(1));
 
-        Arma2 = new JLabel("");
-        Arma2.setEnabled(false);
-        Arma2.setBackground(Color.darkGray);
-        Arma2.setBounds(162,31,40,40);
-        Arma2.setBorder(BorderFactory.createLineBorder(Color.black));
-        add(Arma2, Integer.valueOf(1));
+        escudo = new JLabel("");
+        escudo.setBackground(Color.darkGray);
+        escudo.setBounds(162,31,40,40);
+        escudo.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(escudo, Integer.valueOf(1));
 
         //Icono de fuego
         icon1 = new JLabel();
