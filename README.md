@@ -8,6 +8,7 @@ Primer Juego de SimpDevs
 ## Armas
 - Melee
   - Botella rota
+![Botella rota](/src/sprites/armas/melee/bottle.png)
   - Bate
 - Fuego
   - Glock
