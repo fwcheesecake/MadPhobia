@@ -8,7 +8,7 @@ Primer Juego de SimpDevs
 ## Armas
 - Melee
   - Botella rota
-![Botella rota](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/meele/bottle.png)
+  ![Botella rota](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/meele/bottle.png)
   - Bate
 - Fuego
   - Glock
