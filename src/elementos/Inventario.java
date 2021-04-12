@@ -11,10 +11,12 @@ public class Inventario extends JLayeredPane {
     private Arma armaEquipada;
     private Escudo escudoEquipado;
     private Objeto[] mochila;
-    private JPanel PanelContenedor;
-    public JLabel FondoPanel,Arma1,Arma2;
+    private JPanel panelContenedor;
+    public JLabel FondoPanel, arma, escudo;
     public JButton Flecha,usar,tirar;
     public ImageIcon im,im2;
+
+    public JButton[] botonesDeMochila = new JButton[9];
 
     public Inventario() {
         setArmaEquipada(null);
@@ -63,56 +65,34 @@ public class Inventario extends JLayeredPane {
         tirar.setBorder(BorderFactory.createLineBorder(Color.black));
         add(tirar, Integer.valueOf(1));
 
-        Arma1 = new JLabel("");
-        Arma1.setEnabled(false);
-        Arma1.setBounds(220,324,65,62);
-        Arma1.setBackground(Color.darkGray);
-        Arma1.setBorder(BorderFactory.createLineBorder(Color.black));
-        add(Arma1, Integer.valueOf(1));
+        arma = new JLabel("");
+        arma.setBounds(220,324,65,62);
+        arma.setHorizontalAlignment(JLabel.CENTER);
+        arma.setBackground(Color.darkGray);
+        arma.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(arma, Integer.valueOf(1));
 
-        Arma2 = new JLabel("");
-        Arma2.setEnabled(false);
-        Arma2.setBackground(Color.darkGray);
-        Arma2.setBounds(290,324,65,62);
-        Arma2.setBorder(BorderFactory.createLineBorder(Color.black));
-        add(Arma2, Integer.valueOf(1));
+        escudo = new JLabel("");
+        escudo.setBackground(Color.darkGray);
+        escudo.setHorizontalAlignment(JLabel.CENTER);
+        escudo.setBounds(290,324,65,62);
+        escudo.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(escudo, Integer.valueOf(1));
 
-        PanelContenedor = new JPanel();
+        panelContenedor = new JPanel();
+        panelContenedor.setLayout(new GridLayout(3,3));
 
-        JButton b1=new JButton("1");
-        b1.setBackground(Color.darkGray);
-        b1.setBorder(BorderFactory.createLineBorder(Color.black));
-        JButton b2=new JButton("2");
-        b2.setBackground(Color.darkGray);
-        b2.setBorder(BorderFactory.createLineBorder(Color.black));
-        JButton b3=new JButton("3");
-        b3.setBackground(Color.darkGray);
-        b3.setBorder(BorderFactory.createLineBorder(Color.black));
-        JButton b4=new JButton("4");
-        b4.setBackground(Color.darkGray);
-        b4.setBorder(BorderFactory.createLineBorder(Color.black));
-        JButton b5=new JButton("5");
-        b5.setBackground(Color.darkGray);
-        b5.setBorder(BorderFactory.createLineBorder(Color.black));
-        JButton b6=new JButton("6");
-        b6.setBackground(Color.darkGray);
-        b6.setBorder(BorderFactory.createLineBorder(Color.black));
-        JButton b7=new JButton("7");
-        b7.setBackground(Color.darkGray);
-        b7.setBorder(BorderFactory.createLineBorder(Color.black));
-        JButton b8=new JButton("8");
-        b8.setBackground(Color.darkGray);
-        b8.setBorder(BorderFactory.createLineBorder(Color.black));
-        JButton b9=new JButton("9");
-        b9.setBackground(Color.darkGray);
-        b9.setBorder(BorderFactory.createLineBorder(Color.black));
+        for(int i = 0; i < 9; i++) {
+            botonesDeMochila[i] = new JButton();
+            botonesDeMochila[i].setBackground(Color.darkGray);
+            botonesDeMochila[i].setBorder(BorderFactory.createLineBorder(Color.black));
+            botonesDeMochila[i].setHorizontalAlignment(JButton.CENTER);
+            panelContenedor.add(botonesDeMochila[i]);
+        }
 
-        PanelContenedor.add(b1);PanelContenedor.add(b2);PanelContenedor.add(b3);PanelContenedor.add(b4);PanelContenedor.add(b5);
-        PanelContenedor.add(b6);PanelContenedor.add(b7);PanelContenedor.add(b8);PanelContenedor.add(b9);
-        PanelContenedor.setLayout(new GridLayout(3,3));
-        PanelContenedor.setBounds(55,7,300,300);
-        PanelContenedor.setVisible(true);
-        add(PanelContenedor, Integer.valueOf(1));
+        panelContenedor.setBounds(55,7,300,300);
+        panelContenedor.setVisible(true);
+        add(panelContenedor, Integer.valueOf(1));
 
         setBounds(5, 200, 600, 600);
         setVisible(true);
