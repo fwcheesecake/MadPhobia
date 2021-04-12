@@ -115,7 +115,7 @@ public class Inventario extends JLayeredPane {
         add(PanelContenedor, Integer.valueOf(1));
 
         setBounds(5, 200, 600, 600);
-        setVisible(false);
+        setVisible(true);
     }
 
     public Objeto[] getMochila() {

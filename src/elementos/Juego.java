@@ -100,6 +100,8 @@ public class Juego extends JFrame {
 
         contentPane.add(jugador3.getInventario(), Integer.valueOf(2));
         jugador3.getInventario().crearInventarioGlobal();
+
+
     }
 
     public void addIndicadorCasilla() {
