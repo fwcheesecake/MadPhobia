@@ -17,7 +17,6 @@ public class Indicador extends JLayeredPane {
 
     public Indicador() {
         setLayout(null);
-        pic = new JLabel();
 
         ImgJugador = new JLabel("");
         ImgJugador.setOpaque(false);
