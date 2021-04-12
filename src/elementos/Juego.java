@@ -116,7 +116,7 @@ public class Juego extends JFrame {
         indicadorCasilla.setBounds(1620,200 + gap / 10, 400,500);
 
         feedIcon = new JLabel();
-        feedIcon.setBounds(143,30,115,125);
+        feedIcon.setBounds(141,25,117,124);
         feedIcon.setBorder(BorderFactory.createLineBorder(Color.black));
         feedIcon.setHorizontalAlignment(JLabel.CENTER);
         feedIcon.setVerticalAlignment(JLabel.CENTER);
@@ -125,7 +125,7 @@ public class Juego extends JFrame {
         indicadorCasilla.add(feedIcon, Integer.valueOf(1));
 
         feedDescripcion = new JTextArea();
-        feedDescripcion.setBounds(123,190,148,190);
+        feedDescripcion.setBounds(118,197,160,195);
         feedDescripcion.setOpaque(false);
         setBackground(Color.gray);
         feedDescripcion.setBorder(BorderFactory.createLineBorder(Color.black));
