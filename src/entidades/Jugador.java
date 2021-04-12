@@ -2,6 +2,7 @@ package entidades;
 
 import elementos.Indicador;
 import elementos.Inventario;
+import elementos.Juego;
 
 import javax.swing.*;
 
@@ -78,9 +79,34 @@ public class Jugador extends Ser {
             }
         }
     }
-    public void abririnventario(){
+    public void usarComestible(int regeneracion) {
+        setVida(getVida() + regeneracion);
+        getIndicador().texVida.setText("" + getVida());
+    }
+    public void abririnventario() {
         for(int i = 0; i < 9; i++) {
-
+            if(getInventario().getMochila()[i] == null) {
+                getInventario().botonesDeMochila[i].setIcon(null);
+            } else if(getInventario().getMochila()[i] instanceof Arma) {
+                getInventario().botonesDeMochila[i].setIcon(
+                        returnScaledImage(Arma.iconos[getInventario().getMochila()[i].getImagen()], 62, 62));
+            } else if(getInventario().getMochila()[i] instanceof Escudo) {
+                getInventario().botonesDeMochila[i].setIcon(
+                        returnScaledImage(Escudo.iconos[getInventario().getMochila()[i].getImagen()], 62, 62));
+            } else {
+                getInventario().botonesDeMochila[i].setIcon(
+                        returnScaledImage(Consumible.iconos[getInventario().getMochila()[i].getImagen()], 62, 62));
+            }
+        }
+    }
+    public void updateArmaEscudo() {
+        if(getInventario().getArmaEquipada() != null) {
+            int dano = getInventario().getArmaEquipada().getDano();
+            getIndicador().texDAño.setText("" + (getFuerza() + dano));
+        }
+        if(getInventario().getEscudoEquipado() != null) {
+            int escudo = getInventario().getEscudoEquipado().getEscudo();
+            getIndicador().texEsc.setText("" + escudo);
         }
     }
 

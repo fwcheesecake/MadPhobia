@@ -24,6 +24,8 @@ public class Ser extends Entidad{
     }
 
     public void setVida(int vida) {
+        if(vida > 100)
+            vida = 100;
         this.vida = vida;
     }
 

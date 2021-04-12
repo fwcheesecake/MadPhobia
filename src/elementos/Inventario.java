@@ -1,11 +1,14 @@
 package elementos;
 
 import entidades.Arma;
+import entidades.Consumible;
 import entidades.Escudo;
 import entidades.Objeto;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Inventario extends JLayeredPane {
     private Arma armaEquipada;
@@ -13,8 +16,10 @@ public class Inventario extends JLayeredPane {
     private Objeto[] mochila;
     private JPanel panelContenedor;
     public JLabel FondoPanel, arma, escudo;
-    public JButton Flecha,usar,tirar;
+    public JButton flecha,usar,tirar;
     public ImageIcon im,im2;
+
+    public int botonSeleccionado = -1;
 
     public JButton[] botonesDeMochila = new JButton[9];
 
@@ -40,29 +45,59 @@ public class Inventario extends JLayeredPane {
         im.setImage(im.getImage().getScaledInstance(400, 400, Image.SCALE_DEFAULT));
         add(FondoPanel, Integer.valueOf(0));
 
-        Flecha = new JButton();
+        flecha = new JButton();
         im2 = new ImageIcon(getClass().getResource("/sprites/hud/iconos/flecha.png"));
-        Flecha.setIcon(im2);
-        Flecha.setHorizontalAlignment(FondoPanel.CENTER);
-        Flecha.setBounds(3, -3,80 , 80);
-        Flecha.setBorder(null);
-        Flecha.setOpaque(false);
-        Flecha.setBackground(Color.darkGray);
+        flecha.setIcon(im2);
+        flecha.setHorizontalAlignment(FondoPanel.CENTER);
+        flecha.setBounds(3, -3,80 , 80);
+        flecha.setBorder(null);
+        flecha.setOpaque(false);
+        flecha.setBackground(Color.darkGray);
+        flecha.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
         im2.setImage(im2.getImage().getScaledInstance(90, 99, Image.SCALE_DEFAULT));
-        add(Flecha, Integer.valueOf(1));
+        add(flecha, Integer.valueOf(1));
 
         usar =new JButton("USAR");
         usar.setBackground(Color.darkGray);
         usar.setForeground(Color.black);
         usar.setBounds(54, 340,73 , 39);
         usar.setBorder(BorderFactory.createLineBorder(Color.black));
+        usar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(mochila[botonSeleccionado] instanceof Arma) {
+                    equipar(botonSeleccionado);
+                } else if(mochila[botonSeleccionado] instanceof Escudo) {
+                    equipar(botonSeleccionado);
+                } else {
+                    botonesDeMochila[botonSeleccionado].setIcon(null);
+                    Consumible consumible = (Consumible) mochila[botonSeleccionado];
+                    if(consumible != null)
+                        Juego.jugadorActual.usarComestible(consumible.getRegeneracion());
+                }
+            }
+        });
         add(usar, Integer.valueOf(1));
 
-        tirar =new JButton("TIRAR");
+        tirar = new JButton("TIRAR");
         tirar.setBackground(Color.darkGray);
         tirar.setForeground(Color.black);
         tirar.setBounds(135, 340,73 , 39);
         tirar.setBorder(BorderFactory.createLineBorder(Color.black));
+        tirar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(botonSeleccionado == -1)
+                    return;
+                mochila[botonSeleccionado] = null;
+                botonesDeMochila[botonSeleccionado].setIcon(null);
+            }
+        });
         add(tirar, Integer.valueOf(1));
 
         arma = new JLabel("");
@@ -87,6 +122,14 @@ public class Inventario extends JLayeredPane {
             botonesDeMochila[i].setBackground(Color.darkGray);
             botonesDeMochila[i].setBorder(BorderFactory.createLineBorder(Color.black));
             botonesDeMochila[i].setHorizontalAlignment(JButton.CENTER);
+            botonesDeMochila[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    for(int i = 0; i < 9; i++)
+                        if(e.getSource().equals(botonesDeMochila[i]))
+                            botonSeleccionado = i;
+                }
+            });
             panelContenedor.add(botonesDeMochila[i]);
         }
 
@@ -95,7 +138,7 @@ public class Inventario extends JLayeredPane {
         add(panelContenedor, Integer.valueOf(1));
 
         setBounds(5, 200, 600, 600);
-        setVisible(true);
+        setVisible(false);
     }
 
     public Objeto[] getMochila() {
@@ -109,17 +152,28 @@ public class Inventario extends JLayeredPane {
         getMochila()[objeto] = null;
     }
 
+    private ImageIcon returnScaledImage(ImageIcon icon, int w, int h) {
+        return new ImageIcon(icon.getImage().getScaledInstance(w, h, Image.SCALE_DEFAULT));
+    }
+
     public void equipar(int objeto) {
         Objeto objetoSeleccionado = getMochila()[objeto];
         Objeto objetoACambiar;
         if(getMochila()[objeto] instanceof Arma) {
             objetoACambiar = armaEquipada;
-            armaEquipada = (Arma) objetoSeleccionado;
+            botonesDeMochila[objeto].setIcon(Arma.iconos[objetoACambiar.getImagen()]);
+            arma.setIcon(Arma.iconos[objetoSeleccionado.getImagen()]);
+            Juego.jugadorActual.getIndicador().arma.setIcon(returnScaledImage(Arma.iconos[objetoSeleccionado.getImagen()], 40, 40));
+            setArmaEquipada((Arma) objetoSeleccionado);
         } else {
             objetoACambiar = escudoEquipado;
-            escudoEquipado = (Escudo) objetoSeleccionado;
+            botonesDeMochila[objeto].setIcon(Escudo.iconos[objetoACambiar.getImagen()]);
+            escudo.setIcon(Escudo.iconos[objetoSeleccionado.getImagen()]);
+            Juego.jugadorActual.getIndicador().escudo.setIcon(returnScaledImage(Escudo.iconos[objetoSeleccionado.getImagen()], 40, 40));
+            setEscudoEquipado((Escudo) objetoSeleccionado);
         }
         getMochila()[objeto] = objetoACambiar;
+        Juego.jugadorActual.updateArmaEscudo();
     }
 
     public void desequipar(int objeto) {

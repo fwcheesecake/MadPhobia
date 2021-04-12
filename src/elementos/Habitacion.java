@@ -350,7 +350,8 @@ public class Habitacion extends JPanel implements ActionListener {
 
         Juego.jugadorActual.setEscudo(escudoJugador);
         Juego.jugadorActual.setVida(vidaJugador);
-
+        if(Juego.jugadorActual.getInventario().getEscudoEquipado() != null)
+            Juego.jugadorActual.getInventario().getEscudoEquipado().setEscudo(escudoJugador);
 
         enemigo.setVida(vidaEnemigo);
 

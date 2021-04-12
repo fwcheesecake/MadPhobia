@@ -4,6 +4,8 @@ import entidades.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Juego extends JFrame {
     private JLayeredPane contentPane;
@@ -63,14 +65,24 @@ public class Juego extends JFrame {
         addIndicadorCasilla();
 
         indicadorInventario = new JPanel();
-        JButton Mochila=new JButton("");
-        JLabel Arma1=new JLabel("");
-        JLabel Arma2=new JLabel("");
-        indicadorInventario.add(Arma2);
-        indicadorInventario.add(Arma1);
-        indicadorInventario.add(Mochila);
+        JButton mochila = new JButton("");
+        mochila.setOpaque(true);
+        mochila.setBackground(Color.darkGray);
+        ImageIcon mochilaIcon = new ImageIcon(getClass().getResource("/sprites/hud/iconos/mochila.png"));
+        mochila.setIcon(returnScaledImage(mochilaIcon,
+                        hIndicador,
+                        hIndicador
+        ));
+        mochila.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jugadorActual.abririnventario();
+                jugadorActual.getInventario().setVisible(true);
+            }
+        });
+        indicadorInventario.add(mochila);
         indicadorInventario.setOpaque(false);
-        indicadorInventario.setBorder(BorderFactory.createLineBorder(new Color(0xFFFFFF), 3));
+        indicadorInventario.setBorder(null);
         indicadorInventario.setBounds(xIndicador2, yIndicador3, wIndicador, hIndicador);
         indicadorInventario.setLayout(new GridLayout(1,3));
         contentPane.add(indicadorInventario, Integer.valueOf(1));
@@ -85,6 +97,10 @@ public class Juego extends JFrame {
         jugador3.getInventario().crearInventarioGlobal();
 
 
+    }
+
+    private ImageIcon returnScaledImage(ImageIcon icon, int w, int h) {
+        return new ImageIcon(icon.getImage().getScaledInstance(w, h, Image.SCALE_DEFAULT));
     }
 
     public void addIndicadorCasilla() {
