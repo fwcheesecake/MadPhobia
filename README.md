@@ -35,6 +35,11 @@ Primer Juego de SimpDevs
 Hay 3 tipos de enemigos:
 - Saqueadores:
   - Hacen 15 dano base que aumenta conforme sube el nivel
+
+    ![Saqueador 1](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/pjs/enemigos/saqueadores/saqueador.png)
+    ![Saqueador 2](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/pjs/enemigos/saqueadores/saqueador2.png)
+    ![Saqueador 3](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/pjs/enemigos/saqueadores/saqueador3.png)
+    ![Saqueador 4](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/pjs/enemigos/saqueadores/saqueador4.png)
 - Soldados:
   - Hacen 20 de dano base que aumenta con el nivel
 - Deformes:
