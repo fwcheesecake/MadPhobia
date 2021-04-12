@@ -26,7 +26,7 @@ public class Menu extends JLayeredPane {
        im.setImage(im.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
        add(fondoPanel, Integer.valueOf(0));
 
-       b1 = new JButton();
+       b1 = new JButton("");
        b1.setBounds(732,430,1100,100);
        b1.setBorder(null);
        b1.setFocusPainted(false);
@@ -34,7 +34,7 @@ public class Menu extends JLayeredPane {
        b1.setBackground(Color.darkGray);
        add(b1, Integer.valueOf(1));
 
-       b2 = new JButton();
+       b2 = new JButton("");
        b2.setBounds(1120,600,250,100);
        b2.setBorder(null);
        b2.setFocusPainted(false);
