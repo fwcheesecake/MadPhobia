@@ -11,14 +11,26 @@ Primer Juego de SimpDevs
 
     ![Botella rota](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/meele/bottle.png)
   - Bate
+
+    ![Bate de baseball](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/meele/bat.png)
 - Fuego
   - Glock
+
+    ![Glock](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/fuego/glock.png)
   - Uzi
+
+    ![Uzi](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/fuego/revolver.png)
   - Revolver
+
+    ![Shot Gun](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/fuego/shotgun.png)
   - Shot Gun
 - Explosivo
   - Bomba molotov
+
+    ![Molotov](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/explosivo/molotov.png)
   - Granada de fragmentacion
+
+    ![Granada](https://github.com/fwcheesecake/MadPhobia/blob/master/src/sprites/armas/explosivo/granada.png)
 ## Enemigos
 Hay 3 tipos de enemigos:
 - Saqueadores:
