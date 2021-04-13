@@ -249,7 +249,6 @@ public class Habitacion extends JPanel implements ActionListener {
         System.out.println("----------------------------------------------------------------");
 
         if(Juego.gameOver()) {
-            Derrotado d = new Derrotado();
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException interruptedException) {
@@ -400,14 +399,6 @@ public class Habitacion extends JPanel implements ActionListener {
         scaleImage(Jugador.iconos[0], new Dimension(90, 90));
         scaleImage(Jugador.iconos[1], new Dimension(90, 90));
         scaleImage(Jugador.iconos[2], new Dimension(90, 90));
-
-        if (Juego.jugador1.equals(Juego.jugadorActual)) {
-            casillas[x][y].setIcon(Jugador.iconos[0]);
-        } else if (Juego.jugador2.equals(Juego.jugadorActual)) {
-            casillas[x][y].setIcon(Jugador.iconos[1]);
-        } else {
-            casillas[x][y].setIcon(Jugador.iconos[2]);
-        }
     }
 
     private void agregarConsumibles() {

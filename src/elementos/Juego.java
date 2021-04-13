@@ -224,12 +224,7 @@ public class Juego extends JFrame {
         Arma.inicializarIconos();
         Escudo.inicializarIconos();
 
-        Juego juego = new Juego();
-
-        juego.setFullscreen();
-        juego.setVisible(true);
-        juego.setTitle("MadPhobia");
-        juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Menu.menu = new Menu();
     }
 
     public void setFullscreen() {
