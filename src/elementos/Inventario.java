@@ -77,8 +77,10 @@ public class Inventario extends JLayeredPane {
                 } else {
                     botonesDeMochila[botonSeleccionado].setIcon(null);
                     Consumible consumible = (Consumible) mochila[botonSeleccionado];
-                    if(consumible != null)
+                    if(consumible != null) {
                         Juego.jugadorActual.usarComestible(consumible.getRegeneracion());
+                        mochila[botonSeleccionado] = null;
+                    }
                 }
             }
         });
